@@ -1,0 +1,15 @@
+﻿@{
+    var book = ViewData["book"] as Book;
+}
+
+@if (book == null)
+{
+    <h4>No book found !</h4>
+}
+else
+{
+    <div data-id="@book.Id">
+        <h2>@book.Title</h2>
+        <p>@book.Description</p>
+    </div>
+}

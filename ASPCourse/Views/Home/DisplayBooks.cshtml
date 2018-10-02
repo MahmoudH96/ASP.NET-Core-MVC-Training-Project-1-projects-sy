@@ -1,0 +1,9 @@
+﻿@{
+    List<Book> books = ViewData["A"] as List<Book>;
+}
+<ul>
+    @foreach (var book in books)
+    {
+        <li>@book.Id - @book.Title</li>
+    }
+</ul>
