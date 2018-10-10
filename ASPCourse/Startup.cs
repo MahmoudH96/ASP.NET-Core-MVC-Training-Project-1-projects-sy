@@ -52,8 +52,13 @@ namespace ASPCourse
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "booking route",
+                    template: "{controller=Home}/{action=Index}/{id?}/{code?}");
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }
