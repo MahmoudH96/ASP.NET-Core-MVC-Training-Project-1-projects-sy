@@ -1,0 +1,9 @@
+﻿@model ASPCourse.ViewModels.Files.IndexViewModel
+
+<div class="container">
+    @foreach (var file in Model.Files)
+    {
+        @await Html.PartialAsync("~/Views/File/Partials/_FileCard.cshtml", file)
+    }
+</div>
+

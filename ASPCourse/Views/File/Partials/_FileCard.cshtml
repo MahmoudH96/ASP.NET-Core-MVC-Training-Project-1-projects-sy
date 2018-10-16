@@ -1,0 +1,17 @@
+﻿@model ASPCourse.Models.File
+
+<div class="row col-md-12 card m-2">
+    <img class="card-img-top" src="@Model.CoverUrl" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text">@Model.Description</p>
+        <a asp-controller="File" asp-action="ViewFile" asp-route-id="@Model.Id"
+           class="card-link">
+            View Book
+        </a>
+        <a asp-controller="File" asp-action="DownloadFile" asp-route-id="@Model.Id"
+           class="card-link">
+            Download
+        </a>
+    </div>
+</div>
