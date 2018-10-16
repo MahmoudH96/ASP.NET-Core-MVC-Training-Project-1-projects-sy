@@ -59,6 +59,14 @@ namespace ASPCourse
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
+                routes.MapRoute(
+                    name: "Weather route",
+                    template: "{controller=Home}/{action=Index}/{year}/{month}/{day}");
+
+                routes.MapRoute(
+                  name: "static routing segmant",
+                  template: "MyWebsite/{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }
