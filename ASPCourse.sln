@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity Framework core", "En
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore", "EFCore\EFCore.csproj", "{3CF21422-61E4-4479-97C1-03E5E455B85B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkInDepth", "EntityFrameworkInDepth\EntityFrameworkInDepth.csproj", "{95829EF8-7090-423D-B8AD-B029905D9942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkInDepth", "EntityFrameworkInDepth\EntityFrameworkInDepth.csproj", "{95829EF8-7090-423D-B8AD-B029905D9942}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLINQ", "MyLINQ\MyLINQ.csproj", "{90DF7242-140C-4C3C-AF0A-58F669A7D081}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{95829EF8-7090-423D-B8AD-B029905D9942}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95829EF8-7090-423D-B8AD-B029905D9942}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95829EF8-7090-423D-B8AD-B029905D9942}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90DF7242-140C-4C3C-AF0A-58F669A7D081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DF7242-140C-4C3C-AF0A-58F669A7D081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DF7242-140C-4C3C-AF0A-58F669A7D081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DF7242-140C-4C3C-AF0A-58F669A7D081}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{5B5126F0-1336-4FD5-88A9-D03684C55C5D} = {9F8FA76E-0FDD-4AE8-919C-F96B8ADECB3D}
 		{3CF21422-61E4-4479-97C1-03E5E455B85B} = {5B5126F0-1336-4FD5-88A9-D03684C55C5D}
 		{95829EF8-7090-423D-B8AD-B029905D9942} = {5B5126F0-1336-4FD5-88A9-D03684C55C5D}
+		{90DF7242-140C-4C3C-AF0A-58F669A7D081} = {5B5126F0-1336-4FD5-88A9-D03684C55C5D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EB6443B-5ED8-4DB4-9D71-404BEE963D75}
