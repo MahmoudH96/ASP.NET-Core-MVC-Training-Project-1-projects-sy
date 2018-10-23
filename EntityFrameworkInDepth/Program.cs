@@ -1,4 +1,5 @@
-﻿using EntityFrameworkInDepth.Models.Relationships;
+﻿using EntityFrameworkInDepth.Dtos;
+using EntityFrameworkInDepth.Models.Relationships;
 using EntityFrameworkInDepth.SqlServer;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -132,6 +133,122 @@ namespace EntityFrameworkInDepth
                     .First();
                 context.Entry(productEntity).State = EntityState.Deleted;
                 context.SaveChanges();
+            }
+        }
+
+        public static void QueryUsingLinq()
+        {
+            using (var context = new CommerceDbContext())
+            {
+                #region Select
+                var productsDtoUsingAnonymousTypes = context.Products
+                    .Select(product => new
+                    {
+                        product.Id,
+                        product.Name
+                    })
+                    .ToList();
+                var productsDtoUsingDtoClass = context.Products
+                    .Select(product => new ProductDto()
+                    {
+                        Id = product.Id,
+                        Name = product.Name
+                    })
+                    .ToList();
+                #endregion
+
+                #region Select many with where
+
+                var cityStores = context.Cities
+                    .Where(city => city.Name == "Aleppo")
+                    .SelectMany(city => city.Stories)
+                    .ToList();
+
+                #endregion
+
+                #region Where 
+
+                var productQuery = "pro".ToUpper();
+                var products = context.Products
+                    .Where(product =>
+                            string.IsNullOrEmpty(productQuery)
+                        ||
+                            product.Name.ToUpper().Contains(productQuery)
+                          ).ToList();
+
+                #endregion
+
+                #region Find
+
+                var storeEntity = context.Stores.Find(1);
+
+                #endregion
+
+                #region Any
+
+                var anyProductInsideAStore = context.StoreProducts.Any(storeProduct => storeProduct.StoreId == 1);
+
+                #endregion
+
+                #region First / FirstOrDefault
+
+                var firstCity = context.Cities.First();
+
+                var firstCityWithA = context.Cities
+                    .FirstOrDefault(city => city.Name.Contains('a') || city.Name.Contains('A'));
+
+                #endregion
+
+                #region Count
+
+                var productsWithPriceHigherThan1000 = context.Products.Count(product => product.Price > 1000);
+                var allStoresCount = context.Stores.Count();
+
+                #endregion
+
+                #region Sum
+
+                var allProductsPrices = context.Products.Sum(product => product.Price);
+
+                #endregion
+
+                #region Avarage
+
+                var avarageOfProductsPrices = context.Products.Average(product => product.Price);
+
+                #endregion
+
+                #region Max/Min
+
+                var maxProductPrice = context.Products.Max(product => product.Price);
+
+                var minProductPrice = context.Products.Min(product => product.Price);
+
+                #endregion
+
+                #region GroupBy
+
+                var groupProductsByPrice = context.Products
+                    .GroupBy(product => product.Price)
+                    .ToList();
+
+                #endregion
+
+                #region Order by
+
+                var orderedProducts = context.Products
+                    .OrderBy(product => product.Name)
+                    .ThenByDescending(product => product.Price)
+                    .ToList();
+
+                #endregion
+
+                #region To Dictionary
+
+                var citiesWithStore = context.Cities.Include(city => city.Stories)
+                                    .ToDictionary(city => city, city => city.Stories.ToList());
+
+                #endregion
             }
         }
     }
