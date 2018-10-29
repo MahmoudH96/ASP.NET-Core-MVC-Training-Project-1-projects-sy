@@ -15,5 +15,11 @@ namespace LINQToEntityFramework.SqlServer
         public DbSet<BookWarehouse> BookWarehouses { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Customer> Customers { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=WarehouseDb;Integrated Security=True");
+        }
     }
 }

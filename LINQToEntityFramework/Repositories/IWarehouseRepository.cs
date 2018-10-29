@@ -14,7 +14,7 @@ namespace LINQToEntityFramework.Repositories
         double GetBookCopiesPrice(int bookId);
         IEnumerable<Order> GetAllCustomerOrders(int customerId);
         Order GetLatestOrder();
-        IEnumerable<IGrouping<Author, IEnumerable<Book>>> GetAuthorsBook();
+        IDictionary<Author, IEnumerable<Book>> GetAuthorsBook();
         double GetOrderValuesForMonth(int month, int year);
         IEnumerable<Warehouse> GetPublisherWarehourses(int publisherId);
         double GetAuthorTotalSalles(int authorId);
