@@ -7,7 +7,7 @@ namespace ChefBox.Cooking.IData.Interfaces
 {
     public interface IIngredientRepository
     {
-        IEnumerable<IngredientDto> GetIngredient(string query);
+        IEnumerable<IngredientDto> GetIngredients(string query);
         IngredientDto ActionIngredient(IngredientDto ingredientDto);
         bool RemoveIngredient(int id);
     }

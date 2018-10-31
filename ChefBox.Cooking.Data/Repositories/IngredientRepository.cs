@@ -18,7 +18,7 @@ namespace ChefBox.Cooking.Data.Repositories
             Context = context;
         }
 
-        public IEnumerable<IngredientDto> GetIngredient(string query)
+        public IEnumerable<IngredientDto> GetIngredients(string query)
         {
             return Context.Ingredients
                 .Where(ing =>
