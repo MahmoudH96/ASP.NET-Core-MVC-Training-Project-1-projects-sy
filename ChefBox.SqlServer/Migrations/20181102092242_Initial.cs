@@ -50,19 +50,11 @@ namespace ChefBox.SqlServer.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     IsValid = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: true)
+                    Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ingredients", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Ingredients_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalSchema: "Cooking",
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,7 +69,8 @@ namespace ChefBox.SqlServer.Migrations
                     Descripton = table.Column<string>(nullable: true),
                     RecipeType = table.Column<int>(nullable: false),
                     Note = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false),
+                    IsPublished = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -146,12 +139,6 @@ namespace ChefBox.SqlServer.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_CategoryId",
-                schema: "Cooking",
-                table: "Ingredients",
-                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Photos_RecipeId",

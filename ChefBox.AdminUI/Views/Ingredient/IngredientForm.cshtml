@@ -1,22 +1,33 @@
 ﻿@using ChefBox.AdminUI.ViewModels.Ingredient
 @model IngredientFormViewModel
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add new ingredient</h4>
+                <form asp-controller="Ingredient" asp-action="IngredientForm" method="post">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description"
+                                      class="form-control" rows="5">
+                            </textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right">Save</button>
+                    <a asp-controller="Ingredient" asp-action="Index" class="btn btn-default float-right mx-2">Cancel</a>
+                </form>
 
-<form asp-controller="Ingredient" asp-action="IngredientForm" method="post">
-  <h3>Add new ingredient</h3>
-    <div class="row">
-        <div class="col-md-12 form-group">
-            <label asp-for="Name"></label>
-            <input asp-for="Name" class="form-control" />
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 form-group">
-            <label asp-for="Description"></label>
-            <textarea asp-for="Description"
-                      class="form-control" rows="5">
-            </textarea>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary float-right">Save</button>
-    <a asp-controller="Ingredient" asp-action="Index" class="btn btn-default float-right mx-2">Cancel</a>
-</form>
+</div>
+
+
+

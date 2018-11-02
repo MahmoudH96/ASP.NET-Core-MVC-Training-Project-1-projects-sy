@@ -18,5 +18,6 @@ namespace ChefBox.Model.Cooking
         public int CategoryId { get; set; }
         public ICollection<Photo> Photo { get; set; }
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
+        public bool IsPublished { get; set; }
     }
 }

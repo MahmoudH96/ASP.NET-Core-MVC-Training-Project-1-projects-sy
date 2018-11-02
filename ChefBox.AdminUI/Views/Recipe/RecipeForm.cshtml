@@ -1,0 +1,61 @@
+﻿@using ChefBox.AdminUI.ViewModels.Recipe
+@using ChefBox.Model.Cooking.Enums
+@model RecipeFormViewModel
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add new recipe</h4>
+                <form asp-controller="Recipe" asp-action="RecipeForm" method="post">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label asp-for="CategoryId"></label>
+                            <select asp-for="CategoryId" asp-items="Model.Categories" class="form-control"></select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label asp-for="RecipeType"></label>
+                            <select asp-for="RecipeType" asp-items="Html.GetEnumSelectList<RecipeType>()" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <label asp-for="Description"></label>
+                            <textarea  asp-for="Description" class="form-control ck-editor"
+                                      rows="5">
+
+                            </textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!--Ingredients-->
+                    </div>
+                    <div class="row">
+                        <!--Photos-->
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <div class="custom-control custom-checkbox">
+                                <input asp-for="IsPublished" class="custom-control-input">
+                                <label class="custom-control-label" asp-for="IsPublished"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right">Save</button>
+                    <a asp-controller="Recipe" asp-action="Index" class="btn btn-default float-right mx-2">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/ckEditor/ckeditor.js"></script>
+    <script src="~/js/Views/Recipe/RecipeForm.js"></script>
+}

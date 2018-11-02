@@ -1,4 +1,5 @@
-﻿using ChefBox.Cooking.Dto.Ingredient;
+﻿using ChefBox.Cooking.Data.Base;
+using ChefBox.Cooking.Dto.Ingredient;
 using ChefBox.Cooking.IData.Interfaces;
 using ChefBox.Model.Cooking;
 using ChefBox.SqlServer.Database;
@@ -9,13 +10,11 @@ using System.Linq;
 
 namespace ChefBox.Cooking.Data.Repositories
 {
-    public class IngredientRepository : IIngredientRepository
+    public class IngredientRepository : ChefBoxRepository, IIngredientRepository
     {
-        public ChefBoxDbContext Context { get; }
 
-        public IngredientRepository(ChefBoxDbContext context)
+        public IngredientRepository(ChefBoxDbContext context) : base(context)
         {
-            Context = context;
         }
 
         public IEnumerable<IngredientDto> GetIngredients(string query)
