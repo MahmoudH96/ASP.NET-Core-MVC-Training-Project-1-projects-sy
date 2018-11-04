@@ -16,5 +16,10 @@ namespace ChefBox.Cooking.Dto.Recipe
         public IEnumerable<RecipeIngredientDto> RecipeIngredients { get; set; }
         public IEnumerable<PhotoDto> Photos { get; set; }
         public bool IsPublished { get; set; }
+        public RecipeFormDto()
+        {
+            //RecipeIngredients = new List<RecipeIngredientDto>();
+            //Photos = new List<PhotoDto>();
+        }
     }
 }

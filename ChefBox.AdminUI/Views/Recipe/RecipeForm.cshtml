@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Add new recipe</h4>
-                <form asp-controller="Recipe" asp-action="RecipeForm" method="post">
+                <form asp-controller="Recipe" asp-action="RecipeForm" method="post" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-12 form-group">
                             <label asp-for="Name"></label>
@@ -35,9 +35,44 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="form-group col-md-12">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Unit</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for(int index=0;index<Model.RecipeIngredients.Count();index++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <input type="checkbox" asp-for="@(Model.RecipeIngredients[index].IsChecked)" />
+                                            </td>
+                                            <td>
+                                                @Model.RecipeIngredients[index].Name
+                                            </td>
+                                            <td>
+                                                <select asp-for="@Model.RecipeIngredients[index].Unit" asp-items="Html.GetEnumSelectList<Unit>()"></select>
+                                            </td>
+                                            <td>
+                                                <input asp-for="@Model.RecipeIngredients[index].Amount" />
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div> 
                         <!--Ingredients-->
                     </div>
                     <div class="row">
+                        <div class="form-group col-md-12">
+                            <label asp-for="Photos"></label>
+                            <input asp-for="Photos" type="file" class="form-control" multiple />
+                        </div>
                         <!--Photos-->
                     </div>
                     <div class="row">

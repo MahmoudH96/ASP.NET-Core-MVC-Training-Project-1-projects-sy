@@ -4,6 +4,7 @@ using ChefBox.Cooking.IData.Interfaces;
 using ChefBox.SqlServer.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ChefBox.Cooking.Data.Repositories
@@ -14,6 +15,34 @@ namespace ChefBox.Cooking.Data.Repositories
         {
         }
 
+
+        public IList<RecipeIngredientDto> GetRecipeAllIngredients(int recipeId)
+        {
+            var joinTableIngredients = Context.RecipeIngredients
+                .Where(ri =>
+                    ri.RecipeId == recipeId
+                    &&
+                    ri.IsValid)
+                    .Select(ri => new RecipeIngredientDto()
+                    {
+                        Id=ri.Id,
+                        Amount=ri.Amount,
+                        Name=ri.Ingredient.Name,
+                        Unit=ri.Unit,
+                        IsChecked=true
+                    }).ToList();
+            var joinTableIngredientsIds = joinTableIngredients.
+                Select(ingDto => ingDto.Id)
+                .ToList();
+            var remainingIngredients = Context.Ingredients
+                .Where(ing => !joinTableIngredientsIds.Contains(ing.Id))
+                .Select(ing => new RecipeIngredientDto()
+                {
+                    Name=ing.Name,
+                    IsChecked=false
+                }).ToList();
+            return joinTableIngredients.Concat(remainingIngredients).ToList();
+        }
         public RecipeFormDto ActionRecipeForm(RecipeFormDto recipeFormDto)
         {
             try
@@ -33,20 +62,20 @@ namespace ChefBox.Cooking.Data.Repositories
                         RecipeType = recipeFormDto.RecipeType,
                         Descripton = recipeFormDto.Description,
                         IsPublished = recipeFormDto.IsPublished,
-                        Photo = recipeFormDto.Photos.Select(photoDto => new Model.Cooking.Photo()
+                        Photo = recipeFormDto.Photos?.Select(photoDto => new Model.Cooking.Photo()
                         {
                             Name = photoDto.Name,
                             Url = photoDto.Url,
 
                         }).ToList(),
-                        RecipeIngredients = recipeFormDto.RecipeIngredients.Select(riDto => new Model.Cooking.RecipeIngredient()
+                        RecipeIngredients = recipeFormDto.RecipeIngredients?.Select(riDto => new Model.Cooking.RecipeIngredient()
                         {
                             IngredientId = riDto.Id,
                             Amount = riDto.Amount,
                             Unit = riDto.Unit
                         }).ToList()
                     };
-                    entityState = EntityState.Added;
+                    Context.Recipes.Add(recipeEntity);
                 }
                 else
                 {
@@ -59,7 +88,9 @@ namespace ChefBox.Cooking.Data.Repositories
 
                     RemoveRecipeIngredients(recipeEntity.Id);
                     recipeEntity.RecipeIngredients = recipeFormDto
-                        .RecipeIngredients.Select(riDto => new Model.Cooking.RecipeIngredient()
+                        .RecipeIngredients
+                        .Where(riDto=> riDto.IsChecked)
+                        .Select(riDto => new Model.Cooking.RecipeIngredient()
                         {
                             IngredientId = riDto.Id,
                             Amount = riDto.Amount,
@@ -74,9 +105,8 @@ namespace ChefBox.Cooking.Data.Repositories
                             Url = photoDto.Url
                         });
                     }
+                    Context.Recipes.Update(recipeEntity);
                 }
-
-                Context.Entry(recipeEntity).State = entityState;
                 Context.SaveChanges();
                 recipeFormDto.Id = recipeEntity.Id;
                 return recipeFormDto;

@@ -21,4 +21,8 @@
     <ProjectReference Include="..\ChefBox.Cooking.IData\ChefBox.Cooking.IData.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\recipeImages\" />
+  </ItemGroup>
+
 </Project>

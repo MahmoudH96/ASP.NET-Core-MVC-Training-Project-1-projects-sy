@@ -8,5 +8,6 @@ namespace ChefBox.Cooking.IData.Interfaces
     public interface IRecipeRepository
     {
         RecipeFormDto ActionRecipeForm(RecipeFormDto recipeFormDto);
+        IList<RecipeIngredientDto> GetRecipeAllIngredients(int recipeId);
     }
 }

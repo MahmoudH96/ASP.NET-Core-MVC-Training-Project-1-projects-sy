@@ -1,6 +1,7 @@
 ﻿using ChefBox.Cooking.Dto.Category;
 using ChefBox.Cooking.Dto.Recipe;
 using ChefBox.Model.Cooking.Enums;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,12 @@ namespace ChefBox.AdminUI.ViewModels.Recipe
         public int CategoryId { get; set; }
         public RecipeType RecipeType { get; set; }
         public string Description { get; set; }
-        public IEnumerable<RecipeIngredientDto> RecipeIngredients { get; set; }
+        public IList<RecipeIngredientDto> RecipeIngredients { get; set; }
         [Display(Name = "Is published")]
-
         public bool IsPublished { get; set; }
+
+
+        public IEnumerable<IFormFile> Photos { get; set; }
         #endregion
 
         #region Lists
