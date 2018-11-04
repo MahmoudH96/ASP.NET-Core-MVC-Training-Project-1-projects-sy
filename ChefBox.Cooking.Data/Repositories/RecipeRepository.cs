@@ -25,11 +25,12 @@ namespace ChefBox.Cooking.Data.Repositories
                     ri.IsValid)
                     .Select(ri => new RecipeIngredientDto()
                     {
-                        Id=ri.Id,
-                        Amount=ri.Amount,
-                        Name=ri.Ingredient.Name,
-                        Unit=ri.Unit,
-                        IsChecked=true
+                        Id = ri.Id,
+                        IngredientId = ri.IngredientId,
+                        Amount = ri.Amount,
+                        Name = ri.Ingredient.Name,
+                        Unit = ri.Unit,
+                        IsChecked = true
                     }).ToList();
             var joinTableIngredientsIds = joinTableIngredients.
                 Select(ingDto => ingDto.Id)
@@ -38,8 +39,8 @@ namespace ChefBox.Cooking.Data.Repositories
                 .Where(ing => !joinTableIngredientsIds.Contains(ing.Id))
                 .Select(ing => new RecipeIngredientDto()
                 {
-                    Name=ing.Name,
-                    IsChecked=false
+                    IngredientId = ing.Id,
+                    IsChecked = false
                 }).ToList();
             return joinTableIngredients.Concat(remainingIngredients).ToList();
         }
@@ -68,9 +69,11 @@ namespace ChefBox.Cooking.Data.Repositories
                             Url = photoDto.Url,
 
                         }).ToList(),
-                        RecipeIngredients = recipeFormDto.RecipeIngredients?.Select(riDto => new Model.Cooking.RecipeIngredient()
+                        RecipeIngredients = recipeFormDto.RecipeIngredients?
+                        .Where(ri => ri.IsChecked)
+                        .Select(riDto => new Model.Cooking.RecipeIngredient()
                         {
-                            IngredientId = riDto.Id,
+                            IngredientId = riDto.IngredientId,
                             Amount = riDto.Amount,
                             Unit = riDto.Unit
                         }).ToList()
@@ -89,7 +92,7 @@ namespace ChefBox.Cooking.Data.Repositories
                     RemoveRecipeIngredients(recipeEntity.Id);
                     recipeEntity.RecipeIngredients = recipeFormDto
                         .RecipeIngredients
-                        .Where(riDto=> riDto.IsChecked)
+                        .Where(riDto => riDto.IsChecked)
                         .Select(riDto => new Model.Cooking.RecipeIngredient()
                         {
                             IngredientId = riDto.Id,

@@ -20,9 +20,9 @@ namespace ChefBox.AdminUI.Controllers
         private const string RecipeImagesFolder = "recipeImages";
         public IRecipeRepository RecipeRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
-        public IHostingEnvironment HostingEnvironment { get;  }
+        public IHostingEnvironment HostingEnvironment { get; }
         public RecipeController(IRecipeRepository recipeRepository
-            ,ICategoryRepository categoryRepository,
+            , ICategoryRepository categoryRepository,
             IHostingEnvironment hostingEnvironment)
         {
             RecipeRepository = recipeRepository;
@@ -45,13 +45,13 @@ namespace ChefBox.AdminUI.Controllers
         {
             var vm = new RecipeFormViewModel()
             {
-                Categories=CategoryRepository.GetCategories()
-                .Select(catDto=>new SelectListItem()
+                Categories = CategoryRepository.GetCategories()
+                .Select(catDto => new SelectListItem()
                 {
-                    Value=catDto.Id.ToString(),
-                    Text=catDto.Name
+                    Value = catDto.Id.ToString(),
+                    Text = catDto.Name
                 }),
-                RecipeIngredients=RecipeRepository.GetRecipeAllIngredients(0)
+                RecipeIngredients = RecipeRepository.GetRecipeAllIngredients(0)
             };
             return View(vm);
         }
@@ -83,27 +83,27 @@ namespace ChefBox.AdminUI.Controllers
                         }
                     }
                 }
-                var result=RecipeRepository.ActionRecipeForm(new RecipeFormDto()
+                var result = RecipeRepository.ActionRecipeForm(new RecipeFormDto()
                 {
-                    Id=recipeFormViewModel.Id,
-                    Name=recipeFormViewModel.Name,
-                    CategoryId=recipeFormViewModel.CategoryId,
-                    RecipeType= recipeFormViewModel.RecipeType,
-                    RecipeIngredients=recipeFormViewModel.RecipeIngredients,
-                    Description= recipeFormViewModel.Description,
-                    Photos= photosDtos,
-                    IsPublished= recipeFormViewModel.IsPublished
+                    Id = recipeFormViewModel.Id,
+                    Name = recipeFormViewModel.Name,
+                    CategoryId = recipeFormViewModel.CategoryId,
+                    RecipeType = recipeFormViewModel.RecipeType,
+                    RecipeIngredients = recipeFormViewModel.RecipeIngredients,
+                    Description = recipeFormViewModel.Description,
+                    Photos = photosDtos,
+                    IsPublished = recipeFormViewModel.IsPublished
                 });
                 if (result == null)
                 {
-                    return RedirectToAction("Home", "Index");
+                    return RedirectToAction("Index", "Home");
                 }
-                return null;
+                return RedirectToAction("Index", "Home");
                 //redirect to view recipe page
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Index", "Home");
             }
         }
     }

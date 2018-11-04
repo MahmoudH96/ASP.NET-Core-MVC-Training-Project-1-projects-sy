@@ -8,6 +8,7 @@ namespace ChefBox.Cooking.Dto.Recipe
     public class RecipeIngredientDto
     {
         public int Id { get; set; }
+        public int IngredientId { get; set; }
         public string Name { get; set; }
         public Unit Unit { get; set; }
         public double Amount { get; set; }
