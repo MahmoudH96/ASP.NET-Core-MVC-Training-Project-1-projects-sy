@@ -1,4 +1,6 @@
-﻿<aside class="left-sidebar">
+﻿@using ChefBox.AdminUI.ViewModels.Base
+@model ChefBoxViewModel
+<aside class="left-sidebar">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
         <!-- Sidebar navigation-->
@@ -12,7 +14,7 @@
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                        <i  class="fas fa-utensils"></i>
+                        <i class="fas fa-utensils"></i>
                         <span class="hide-menu">Cooking </span>
                     </a>
                     <ul aria-expanded="false" class="collapse  first-level">
@@ -20,14 +22,14 @@
                             <a asp-controller="Recipe" asp-action="Index" class="sidebar-link">
                                 <i class="fas fa-sticky-note"></i>
                                 <span class="hide-menu"> Recipes </span>
-                                <span class="badge badge-pill badge-success ml-auto m-r-15">3</span>
+                                <span class="badge badge-pill badge-success ml-auto m-r-15">@Model.SharedContentDto.RecipesCount</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a asp-controller="Ingredient" asp-action="Index" class="sidebar-link">
                                 <i class="fas fa-lemon"></i>
                                 <span class="hide-menu"> Ingredients </span>
-                                <span class="badge badge-pill badge-info ml-auto m-r-15">10</span>
+                                <span class="badge badge-pill badge-info ml-auto m-r-15">@Model.SharedContentDto.IngredientsCount</span>
 
                             </a>
                         </li>
@@ -35,7 +37,7 @@
                             <a href="index3.html" class="sidebar-link">
                                 <i class="fas fa-tags"></i>
                                 <span class="hide-menu"> Categories </span>
-                                <span class="badge badge-pill badge-info ml-auto m-r-15">7</span>
+                                <span class="badge badge-pill badge-info ml-auto m-r-15">@Model.SharedContentDto.CategoriesCount</span>
                             </a>
                         </li>
                     </ul>

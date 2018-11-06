@@ -1,9 +1,22 @@
 ﻿using ChefBox.Model.Cooking.Enums;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ChefBox.AdminUI.Extensions
 {
     public static class ExtensionMethods
     {
+        public static string ToUL(this IEnumerable<string> dataList)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<ul>");
+            foreach (var item in dataList)
+            {
+                sb.Append($"<li>{item}</li>");
+            }
+            sb.Append("</ul>");
+            return sb.ToString();
+        }
         public static string ToIconClass(this Unit unit)
         {
             switch (unit)

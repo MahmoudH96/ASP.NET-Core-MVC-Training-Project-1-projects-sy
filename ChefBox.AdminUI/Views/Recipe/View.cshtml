@@ -1,0 +1,90 @@
+﻿@using ChefBox.AdminUI.ViewModels.Recipe
+@using  ChefBox.AdminUI.Extensions
+@using ChefBox.Cooking.Dto.Photo
+@model ViewRecipeViewModel
+@{
+    string publishBtnClass = "success";
+    string publishBtnIcon = "fas fa-eye";
+    if (!Model.ViewRecipeDto.IsPublished)
+    {
+
+        publishBtnClass = "warning";
+        publishBtnIcon = "fas fa-eye-slash";
+
+    }
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <a class="btn btn-primary float-right mx-1" asp-controller="Recipe"
+                   asp-action="RecipeForm"
+                   asp-route-id="@Model.ViewRecipeDto.Id">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="btn btn-@publishBtnClass float-right mx-1"
+                   href="#">
+                    <i class="@publishBtnIcon"></i>
+                </a>
+                <h3 class="card-title">@Model.ViewRecipeDto.Name</h3>
+                <div class="row my-5">
+                    <div class="col-md-6">
+                        <h4>Description</h4>
+                        <div>
+                            @Html.Raw(Model.ViewRecipeDto.Description)
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Ingredients</h4>
+                        <ul class="list-group">
+                            @foreach (var ingredient in Model.ViewRecipeDto.Ingredients)
+                            {
+                            <li class="list-group-item">
+                                <i data-toggle="tooltip" data-placement="top" title="@ingredient.Unit.ToString()" 
+                                   class="@ingredient.Unit.ToIconClass() ingredient-list mx-1"></i>
+                                <p class="ingredient-list mx-1">@ingredient.Name</p>
+                                <small class="ingredient-list mx-1">(@ingredient.Amount)</small>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    
+                    <div style="background-color:gray">
+                        <div id="recipePhotoSlider" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#recipePhotoSlider" data-slide-to="0" class="active"></li>
+                                <li data-target="#recipePhotoSlider" data-slide-to="1"></li>
+                                <li data-target="#recipePhotoSlider" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner" role="listbox">
+                                @{
+                                    PhotoDto currentPhoto = null;
+                                }
+                                @for (int index = 0; index < Model.ViewRecipeDto.Photos.Count(); index++)
+                                {
+                                    currentPhoto = Model.ViewRecipeDto.Photos.ElementAt(index);
+                                    <div class="carousel-item @(index==0?"active":string.Empty)">
+                                        <img class="img-fluid" src="@currentPhoto.Url" alt="@currentPhoto.Name">
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <h3 class="text-white">@currentPhoto.Name</h3>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <a class="carousel-control-prev" href="#recipePhotoSlider" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#recipePhotoSlider" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,15 +15,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ChefBox.AdminUI.Controllers
 {
-    public class RecipeController : Controller
+    public class RecipeController : ChefBoxController
     {
         private const string RecipeImagesFolder = "recipeImages";
         public IRecipeRepository RecipeRepository { get; }
         public ICategoryRepository CategoryRepository { get; }
         public IHostingEnvironment HostingEnvironment { get; }
         public RecipeController(IRecipeRepository recipeRepository
-            , ICategoryRepository categoryRepository,
-            IHostingEnvironment hostingEnvironment)
+            , ICategoryRepository categoryRepository
+            , IHostingEnvironment hostingEnvironment
+            , ISharedRepository sharedRepository)
+            : base(sharedRepository)
         {
             RecipeRepository = recipeRepository;
             CategoryRepository = categoryRepository;
@@ -35,10 +37,19 @@ namespace ChefBox.AdminUI.Controllers
         {
             var vm = new IndexViewModel()
             {
+                Recipes = RecipeRepository.GetRecipes()
             };
             return View(vm);
         }
 
+        public IActionResult View(int id)
+        {
+            var vm = new ViewRecipeViewModel()
+            {
+                ViewRecipeDto = RecipeRepository.GetRecipe(id)
+            };
+            return View(vm);
+        }
 
         [HttpGet]
         public IActionResult RecipeForm()
@@ -98,8 +109,7 @@ namespace ChefBox.AdminUI.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("Index", "Home");
-                //redirect to view recipe page
+                return RedirectToAction("View", "Recipe");
             }
             catch (Exception ex)
             {

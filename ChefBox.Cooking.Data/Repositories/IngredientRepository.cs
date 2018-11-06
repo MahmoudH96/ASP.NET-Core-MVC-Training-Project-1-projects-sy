@@ -61,8 +61,9 @@ namespace ChefBox.Cooking.Data.Repositories
                 }
                 else
                 {
-                    ingredientEntity.Name = ingredientEntity.Name;
-                    ingredientEntity.Description = ingredientEntity.Description;
+                    //edit
+                    ingredientEntity.Name = ingredientDto.Name;
+                    ingredientEntity.Description = ingredientDto.Description;
                 }
                 Context.Entry(ingredientEntity).State = entityState;
                 Context.SaveChanges();
@@ -93,6 +94,19 @@ namespace ChefBox.Cooking.Data.Repositories
             {
                 return false;
             }
+        }
+
+        public IngredientDto GetIngredient(int id)
+        {
+            return Context.Ingredients
+                .Where(ing => ing.IsValid && ing.Id == id)
+                .Select(ing => new IngredientDto()
+                {
+                    Id=ing.Id,
+                    Name=ing.Name,
+                    Description=ing.Description
+                }).SingleOrDefault();
+
         }
     }
 }

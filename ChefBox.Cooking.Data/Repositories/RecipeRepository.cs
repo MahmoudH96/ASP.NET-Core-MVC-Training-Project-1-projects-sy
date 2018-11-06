@@ -136,5 +136,51 @@ namespace ChefBox.Cooking.Data.Repositories
                 return false;
             }
         }
+
+        public IEnumerable<RecipeDto> GetRecipes()
+        {
+            return Context.Recipes
+                    .Where(recipe=>recipe.IsValid)
+                    .OrderBy(recipe=>recipe.Name)
+                    .Select(recipe=>new RecipeDto()
+                    {
+                        Id=recipe.Id,
+                        Name=recipe.Name,
+                        RecipeType= recipe.RecipeType,
+                        Category =recipe.Category.Name,
+                        Ingredients=recipe.RecipeIngredients
+                            .Select(ri=>ri.Ingredient.Name)
+                            .ToList()
+                    }).ToList();
+        }
+
+        public ViewRecipeDto GetRecipe(int id)
+        {
+            return Context.Recipes
+                .Where(recipe => recipe.IsValid && recipe.Id == id)
+                .Select(recipe => new ViewRecipeDto()
+                {
+                    Id=recipe.Id,
+                    Name=recipe.Name,
+                    Category=recipe.Category.Name,
+                    RecipeType= recipe.RecipeType,
+                    IsPublished=recipe.IsPublished,
+                    Description=recipe.Descripton,
+                    Ingredients=recipe.RecipeIngredients.Select(ri=>new RecipeIngredientDto()
+                    {
+                        Id=ri.Id,
+                        IngredientId=ri.IngredientId,
+                        Amount=ri.Amount,
+                        Name=ri.Ingredient.Name,
+                        Unit=ri.Unit
+                    }).ToList(),
+                    Photos=recipe.Photo.Select(photo=>new Dto.Photo.PhotoDto()
+                    {
+                        Id=photo.Id,
+                        Name=photo.Name,
+                        Url=photo.Url
+                    }).ToList()
+                }).SingleOrDefault();
+        }
     }
 }

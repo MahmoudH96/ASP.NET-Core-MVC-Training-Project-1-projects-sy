@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ChefBox.AdminUI.Controllers
 {
-    public class IngredientController : Controller
+    public class IngredientController : ChefBoxController
     {
 
         public IIngredientRepository IngredientRepository { get; }
-        public IngredientController(IIngredientRepository ingredientRepository)
+        public IngredientController(IIngredientRepository ingredientRepository
+            , ISharedRepository sharedRepository)
+            : base(sharedRepository)
         {
             IngredientRepository = ingredientRepository;
         }
@@ -27,9 +29,23 @@ namespace ChefBox.AdminUI.Controllers
         }
 
 
-        public IActionResult IngredientForm()
+        public IActionResult IngredientForm(int? id)
         {
-            var vm = new IngredientFormViewModel();
+            IngredientFormViewModel vm;
+            if (id.HasValue && id>0)
+            {
+                var ingredientData = IngredientRepository.GetIngredient(id.Value);
+                vm = new IngredientFormViewModel()
+                {
+                    Id=ingredientData.Id,
+                    Description=ingredientData.Description,
+                    Name=ingredientData.Name
+                };
+            }
+            else
+            {
+                 vm = new IngredientFormViewModel();
+            }
             return View(vm);
         }
 

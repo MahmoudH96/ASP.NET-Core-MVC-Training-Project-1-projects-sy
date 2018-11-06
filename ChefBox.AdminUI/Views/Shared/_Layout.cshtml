@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using ChefBox.AdminUI.ViewModels.Base
+@model ChefBoxViewModel
+<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
@@ -37,7 +39,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        @await Html.PartialAsync("~/Views/Shared/_Sidebar.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/_Sidebar.cshtml",Model)
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->

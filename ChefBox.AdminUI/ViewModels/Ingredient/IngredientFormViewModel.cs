@@ -1,6 +1,8 @@
-﻿namespace ChefBox.AdminUI.ViewModels.Ingredient
+﻿using ChefBox.AdminUI.ViewModels.Base;
+
+namespace ChefBox.AdminUI.ViewModels.Ingredient
 {
-    public class IngredientFormViewModel
+    public class IngredientFormViewModel: ChefBoxViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

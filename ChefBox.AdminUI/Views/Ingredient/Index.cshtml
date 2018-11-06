@@ -14,6 +14,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Recipes</th>
                                 <th scope="col">Description</th>
+                                <th>Options</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -23,6 +24,14 @@
                                     <td>@ingredient.Name</td>
                                     <td>@ingredient.RecipesCount</td>
                                     <td>@ingredient.Description</td>
+                                    <td>
+                                        <a asp-controller="Ingredient"
+                                           asp-action="IngredientForm"
+                                           asp-route-id="@ingredient.Id"
+                                           class="btn btn-secondary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             }
                         </tbody>

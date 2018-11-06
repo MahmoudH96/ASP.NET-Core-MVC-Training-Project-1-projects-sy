@@ -1,4 +1,5 @@
-﻿using ChefBox.Cooking.Dto.Category;
+﻿using ChefBox.AdminUI.ViewModels.Base;
+using ChefBox.Cooking.Dto.Category;
 using ChefBox.Cooking.Dto.Recipe;
 using ChefBox.Model.Cooking.Enums;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ChefBox.AdminUI.ViewModels.Recipe
 {
-    public class RecipeFormViewModel
+    public class RecipeFormViewModel: ChefBoxViewModel
     {
         #region Form Data
         public int Id { get; set; }

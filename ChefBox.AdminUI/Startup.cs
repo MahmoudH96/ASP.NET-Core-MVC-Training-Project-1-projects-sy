@@ -29,9 +29,10 @@ namespace ChefBox.AdminUI
         {
             services.AddTransient<IIngredientRepository, IngredientRepository>();
             services.AddTransient<IRecipeRepository, RecipeRepository>();
+            services.AddTransient<ISharedRepository, SharedRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddDbContext<ChefBoxDbContext>(option =>
-            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            option.UseSqlServer(Configuration.GetConnectionString("ProjectsPcConnection")));
 
 
             services.Configure<CookiePolicyOptions>(options =>
