@@ -1,5 +1,9 @@
-﻿using ChefBox.Cooking.IData.Interfaces;
+﻿using ChefBox.AdminUI.Dto;
+using ChefBox.AdminUI.ViewModels.Home;
+using ChefBox.Cooking.IData.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading;
 
 namespace ChefBox.AdminUI.Controllers
 {
@@ -13,7 +17,23 @@ namespace ChefBox.AdminUI.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var vm = new IndexViewModel();
+            return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult GetHomeData()
+        {
+            Thread.Sleep(5000);
+            var statistics = SharedRepository.GetSharedContent();
+            var homeData = new HomeDataDto()
+            {
+                CategoriesCount= statistics.CategoriesCount,
+                IngredientsCount= statistics.IngredientsCount,
+                RecipesCount=statistics.RecipesCount,
+                TipOfTheDay ="Be happy !"
+            };
+            return Json(homeData);
         }
     }
 }
