@@ -28,10 +28,9 @@ namespace ChefBox.AdminUI.Controllers
             var statistics = SharedRepository.GetSharedContent();
             var homeData = new HomeDataDto()
             {
-                CategoriesCount= statistics.CategoriesCount,
-                IngredientsCount= statistics.IngredientsCount,
-                RecipesCount=statistics.RecipesCount,
-                TipOfTheDay ="Be happy !"
+                CategoriesCount = statistics.CategoriesCount,
+                IngredientsCount = statistics.IngredientsCount,
+                RecipesCount = statistics.RecipesCount
             };
             return Json(homeData);
         }

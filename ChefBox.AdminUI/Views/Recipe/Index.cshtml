@@ -20,37 +20,36 @@
                     <tbody>
                         @foreach (var recipe in Model.Recipes)
                         {
-                        <tr>
-                            <td>@recipe.Name</td>
-                            <td>@recipe.Category</td>
-                            <td>@recipe.RecipeType</td>
-                            <td>
-                                <a asp-controller="Recipe" asp-action="View"
-                                   asp-route-id="@recipe.Id" 
-                                   class="btn btn-primary btn-sm">
-                                    <i class="fas fa-eye"></i>
-                                </a>
-                                <button type="button" class="btn btn-secondary btn-sm" data-container="body" title="Ingredients"
-                                        data-toggle="popover"
-                                        data-placement="top"
-                                        data-content="@recipe.Ingredients.ToUL()"
-                                        data-html="true">
-                                    <i class="fas fa-lemon"></i>
-                                </button>
-                                <a asp-controller="Recipe" 
-                                   asp-action="RecipeForm" 
-                                   asp-route-id="@recipe.Id" 
-                                   class="btn btn-secondary btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <a asp-controller="Recipe" 
-                                   asp-action="RecipeForm" 
-                                   
-                                   class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>@recipe.Name</td>
+                                <td>@recipe.Category</td>
+                                <td>@recipe.RecipeType</td>
+                                <td>
+                                    <a asp-controller="Recipe" asp-action="View"
+                                       asp-route-id="@recipe.Id"
+                                       class="btn btn-primary btn-sm">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-secondary btn-sm" data-container="body" title="Ingredients"
+                                            data-toggle="popover"
+                                            data-placement="top"
+                                            data-content="@recipe.Ingredients.ToUL()"
+                                            data-html="true">
+                                        <i class="fas fa-lemon"></i>
+                                    </button>
+                                    <a asp-controller="Recipe"
+                                       asp-action="RecipeForm"
+                                       asp-route-id="@recipe.Id"
+                                       class="btn btn-secondary btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-controller="Recipe"
+                                       asp-action="RecipeForm"
+                                       class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>

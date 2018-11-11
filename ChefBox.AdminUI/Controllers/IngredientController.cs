@@ -1,4 +1,5 @@
-﻿using ChefBox.AdminUI.ViewModels.Ingredient;
+﻿using ChefBox.AdminUI.Extensions;
+using ChefBox.AdminUI.ViewModels.Ingredient;
 using ChefBox.Cooking.Dto.Ingredient;
 using ChefBox.Cooking.IData.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -33,19 +34,19 @@ namespace ChefBox.AdminUI.Controllers
         public IActionResult IngredientForm(int? id)
         {
             IngredientFormViewModel vm;
-            if (id.HasValue && id>0)
+            if (id.HasValue && id > 0)
             {
                 var ingredientData = IngredientRepository.GetIngredient(id.Value);
                 vm = new IngredientFormViewModel()
                 {
-                    Id=ingredientData.Id,
-                    Description=ingredientData.Description,
-                    Name=ingredientData.Name
+                    Id = ingredientData.Id,
+                    Description = ingredientData.Description,
+                    Name = ingredientData.Name
                 };
             }
             else
             {
-                 vm = new IngredientFormViewModel();
+                vm = new IngredientFormViewModel();
             }
             return View(vm);
         }
@@ -61,6 +62,10 @@ namespace ChefBox.AdminUI.Controllers
             });
             if (data != null)
             {
+                if (Request.IsAjaxRequest())
+                {
+                    return Json(data);
+                }
                 return RedirectToAction(nameof(IngredientController.Index));
             }
             return Content("Failed");

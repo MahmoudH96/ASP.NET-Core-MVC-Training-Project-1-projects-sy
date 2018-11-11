@@ -1,5 +1,5 @@
 ﻿$(document).ready(() => {
-   loadHomeData();
+    loadHomeData();
 });
 
 function loadHomeData() {
@@ -8,7 +8,7 @@ function loadHomeData() {
         data: {
         },
         type: "GET",
-        dataType: "json",
+        dataType: "json"
     }).done(function (json) {
         console.log(json);
         $("#recipeCount").html(json.recipesCount);
@@ -16,6 +16,6 @@ function loadHomeData() {
         $("#categoryCount").html(json.categoriesCount);
         $("#tip").html(json.tipOfTheDay);
     }).fail(function (xhr, status, errorThrown) {
-            alert("Sorry, could not get home data");
+        console.log("Sorry, could not get home data");
     });
 }

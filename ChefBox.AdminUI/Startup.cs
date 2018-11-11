@@ -32,7 +32,7 @@ namespace ChefBox.AdminUI
             services.AddTransient<ISharedRepository, SharedRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddDbContext<ChefBoxDbContext>(option =>
-            option.UseSqlServer(Configuration.GetConnectionString("ProjectsPcConnection")));
+            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 
             services.Configure<CookiePolicyOptions>(options =>

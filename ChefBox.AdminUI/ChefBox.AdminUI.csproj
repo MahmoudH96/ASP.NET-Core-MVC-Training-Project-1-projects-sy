@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\lib\sweetAlert\" />
     <Folder Include="wwwroot\recipeImages\" />
   </ItemGroup>
 

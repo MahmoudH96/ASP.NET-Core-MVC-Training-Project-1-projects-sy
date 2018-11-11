@@ -1,4 +1,6 @@
 ﻿using ChefBox.Model.Cooking.Enums;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -72,6 +74,11 @@ namespace ChefBox.AdminUI.Extensions
                         return "mdi-food-variant";
                     }
             }
+        }
+
+        public static bool IsAjaxRequest(this HttpRequest request)
+        {
+            return request.Headers["X-Requested-With"] == "XMLHttpRequest";
         }
     }
 }

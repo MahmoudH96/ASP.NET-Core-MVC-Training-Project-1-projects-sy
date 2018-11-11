@@ -1,60 +1,82 @@
 ﻿@using ChefBox.AdminUI.ViewModels.Ingredient
 @model IndexViewModel
 
-<div class="container">
-    <div class="card-group">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h5>Quick insert</h5>
-                        <form class="my-2" id="addIngredientForm">
-                            <input type="text" name="@nameof(IngredientFormViewModel.Name)" class="form-control mx-2" id="ingredientName" placeholder="Name">
-                            <input type="text" name="@nameof(IngredientFormViewModel.Description)" class="form-control mx-2" id="ingredientDescription" placeholder="Description">
-                            <button type="submit" class="btn btn-primary">Save</button>
-                        </form>
-                    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Quick insert</h5>
+                    <form class="my-2" id="addIngredientForm">
+                        <div class="row">
+                            <div class="col-md-5 form-group">
+                                <input type="text" name="@nameof(IngredientFormViewModel.Name)"
+                                       class="form-control mx-2"
+                                       id="ingredientName"
+                                       placeholder="Name">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="@nameof(IngredientFormViewModel.Description)"
+                                       class="form-control mx-2"
+                                       id="ingredientDescription"
+                                       placeholder="Description">
+                            </div>
+                            <div class="col-md-1">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <a class="btn btn-primary float-right" asp-controller="Ingredient" asp-action="IngredientForm"><i class="fas fa-plus"></i> New ingredient</a>
-                                <h4 class="card-title">Ingredients</h4>
-                                <h6 class="card-subtitle">Show all ingredients for all recipies</h6>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Recipes</th>
-                                                <th scope="col">Description</th>
-                                                <th>Options</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var ingredient in Model.Ingredients)
-                                            {
-                                                <tr data-id="@ingredient.Id"
-                                                    data-name="@ingredient.Name">
-                                                    <td>@ingredient.Name</td>
-                                                    <td>@ingredient.RecipesCount</td>
-                                                    <td>@ingredient.Description</td>
-                                                    <td>
-                                                        <a asp-controller="Ingredient"
-                                                           asp-action="IngredientForm"
-                                                           asp-route-id="@ingredient.Id"
-                                                           class="btn btn-secondary btn-sm">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-                                                        <a class="btn btn-danger btn-sm remove-ingredient">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
-                                                    </td>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <a class="btn btn-primary float-right" asp-controller="Ingredient" asp-action="IngredientForm"><i class="fas fa-plus"></i> New ingredient</a>
+                                    <h4 class="card-title">Ingredients</h4>
+                                    <h6 class="card-subtitle">Show all ingredients for all recipies</h6>
+                                    <div class="table-responsive">
+                                        <table id="ingredientTable" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Recipes</th>
+                                                    <th scope="col">Description</th>
+                                                    <th>Options</th>
                                                 </tr>
-                                            }
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var ingredient in Model.Ingredients)
+                                                {
+                                                    <tr data-id="@ingredient.Id"
+                                                        data-name="@ingredient.Name">
+                                                        <td>@ingredient.Name</td>
+                                                        <td>@ingredient.RecipesCount</td>
+                                                        <td>@ingredient.Description</td>
+                                                        <td>
+                                                            <a asp-controller="Ingredient"
+                                                               asp-action="IngredientForm"
+                                                               asp-route-id="@ingredient.Id"
+                                                               class="btn btn-secondary btn-sm">
+                                                                <i class="fas fa-edit"></i>
+                                                            </a>
+                                                            <a href="#" class="btn btn-danger btn-sm remove-ingredient">
+                                                                <i class="fas fa-trash"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -62,9 +84,10 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
-               
+
 @section Scripts{
     <script src="~/js/Views/Ingredient/Index.js"></script>
 }
