@@ -8,5 +8,6 @@ namespace ChefBox.Cooking.IData.Interfaces
     public interface ISharedRepository
     {
         SharedContentDto GetSharedContent();
+        HomePageDto GetHomePageContent();
     }
 }

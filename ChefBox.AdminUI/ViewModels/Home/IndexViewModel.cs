@@ -1,13 +1,10 @@
 ﻿using ChefBox.AdminUI.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ChefBox.Cooking.Dto.Shared;
 
 namespace ChefBox.AdminUI.ViewModels.Home
 {
-    public class IndexViewModel:ChefBoxViewModel
+    public class IndexViewModel : ChefBoxViewModel
     {
-
+        public HomePageDto HomePageDto { get; set; }
     }
 }

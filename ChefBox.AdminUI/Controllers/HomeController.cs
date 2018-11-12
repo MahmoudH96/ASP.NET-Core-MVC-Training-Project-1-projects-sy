@@ -17,7 +17,10 @@ namespace ChefBox.AdminUI.Controllers
         }
         public IActionResult Index()
         {
-            var vm = new IndexViewModel();
+            var vm = new IndexViewModel()
+            {
+                HomePageDto = SharedRepository.GetHomePageContent()
+            };
             return View(vm);
         }
 

@@ -13,5 +13,7 @@ namespace ChefBox.Model.Cooking
         [Required]
         public string Name { get; set; }
         public ICollection<Recipe> Recipes { get; set; }
+
+        public DateTime CreationDate { get; set; } = DateTime.UtcNow;
     }
 }

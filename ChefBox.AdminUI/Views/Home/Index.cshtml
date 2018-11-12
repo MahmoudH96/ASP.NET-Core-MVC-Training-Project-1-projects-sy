@@ -1,65 +1,86 @@
-﻿<div class="row">
+﻿@using ChefBox.AdminUI.ViewModels.Home
+@model IndexViewModel
+<div class="row">
     <div class="col-md-12">
         <div class="card-group">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="d-flex no-block align-items-center">
-                                <div>
-                                    <i class="fas fa-sticky-note font-20 text-muted"></i>
-                                    <p class="font-16 m-b-5">Recipes</p>
-                                </div>
-                                <div class="ml-auto">
-                                    <h1 id="recipeCount" class="font-light text-right"></h1>
-                                </div>
-                            </div>
-                        </div>
+            <div class="card mx-2">
+                <div class="d-flex flex-row">
+                    <div class="p-10 bg-success">
+                        <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-info m-b-0">Recipes</h3>
+                        @if (Model.HomePageDto.Recipes.LatestItemId != 0)
+                        {
+                            <a asp-controller="Recipe" asp-action="RecipeForm"
+                               asp-route-id="@Model.HomePageDto.Recipes.LatestItemId"
+                               class="text-muted">@Model.HomePageDto.Recipes.LatestItemName</a>
+                        }
+                    </div>
+                    <div class="align-self-center m-r-20 ml-auto">
+                        <h2 class="text-info m-b-0">@Model.HomePageDto.Recipes.TotalCount</h2>
                     </div>
                 </div>
             </div>
-            <!-- Column -->
-            <!-- Column -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="d-flex no-block align-items-center">
-                                <div>
-                                    <i class="fas fa-lemon font-20  text-muted"></i>
-                                    <p class="font-16 m-b-5">Ingredients</p>
-                                </div>
-                                <div class="ml-auto">
-                                    <h1 class="font-light text-right" id="ingredientCount"></h1>
-                                </div>
-                            </div>
-                        </div>
+            <div class="card mx-2">
+                <div class="d-flex flex-row">
+                    <div class="p-10 bg-info">
+                        <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-info m-b-0">Ingredients</h3>
+                        @if (Model.HomePageDto.Ingredients.LatestItemId > 0)
+                        {
+                            <a asp-controller="Ingredient" asp-action="IngredientForm"
+                               asp-route-id="@Model.HomePageDto.Ingredients.LatestItemId"
+                               class="text-muted">@Model.HomePageDto.Ingredients.LatestItemName</a>
+                        }
+                    </div>
+                    <div class="align-self-center m-r-20 ml-auto">
+                        <h2 class="text-info m-b-0">@Model.HomePageDto.Ingredients.TotalCount</h2>
                     </div>
                 </div>
             </div>
-            <!-- Column -->
-            <!-- Column -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="d-flex no-block align-items-center">
-                                <div>
-                                    <i class="fas fa-tags font-20 text-muted"></i>
-                                    <p class="font-16 m-b-5">Categories</p>
-                                </div>
-                                <div class="ml-auto">
-                                    <h1 class="font-light text-right" id="categoryCount"></h1>
-                                </div>
-                            </div>
-                        </div>
+            <div class="card mx-2">
+                <div class="d-flex flex-row">
+                    <div class="p-10 bg-primary">
+                        <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-info m-b-0">Categories</h3>
+                        @if (Model.HomePageDto.Categories.LatestItemId != 0)
+                        {
+                            <a asp-controller="Category" asp-action="CategoryForm"
+                               asp-route-id="@Model.HomePageDto.Categories.LatestItemId"
+                               class="text-muted">@Model.HomePageDto.Categories.LatestItemName</a>
+                        }
+                    </div>
+                    <div class="align-self-center m-r-20 ml-auto">
+                        <h2 class="text-info m-b-0">@Model.HomePageDto.Categories.TotalCount</h2>
                     </div>
                 </div>
             </div>
-            <!-- Column -->
-            <!-- Column -->
-        </div>
 
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="card col-md-9 mx-4">
+        <div class="card-body">
+            <h4 class="card-title">Quote of the day</h4>
+            <p class="card-text" id="quote"></p>
+            <p class="card-text" id="quoteAuthor"></p>
+            <a href="#" id="refreshQuote" class="btn btn-primary">Want another quote !</a>
+        </div>
+    </div>
+    <div class="card col-md-2">
+        <div class="card-body m-b-0">
+            <h4 class="card-title">@DateTime.Today.DayOfWeek.ToString() <span class="font-14 font-normal text-muted">@DateTime.Today.ToShortDateString()</span></h4>
+            <h5 id="cityName"></h5>
+            <div class="d-flex align-items-center flex-row m-t-30">
+                <h1 class="font-light"><img id="weatherImg" src="http://openweathermap.org/img/w/04n.png" /><span><span id="temp"></span><sup>°</sup></span></h1>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,5 +1,6 @@
 ﻿using ChefBox.Model.Base;
 using ChefBox.Model.Cooking.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,5 +20,7 @@ namespace ChefBox.Model.Cooking
         public ICollection<Photo> Photo { get; set; }
         public ICollection<RecipeIngredient> RecipeIngredients { get; set; }
         public bool IsPublished { get; set; }
+        public DateTime CreationDate { get; set; } = DateTime.UtcNow;
+
     }
 }
