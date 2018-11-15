@@ -45,7 +45,7 @@ namespace ChefBox.AdminUI.Extensions
                 case Unit.G:
                 case Unit.Pound:
                     {
-                        return "fas fa-weight-hanging";
+                        return "fas fa-weight";
                     }
                 default:
                     {
@@ -75,7 +75,6 @@ namespace ChefBox.AdminUI.Extensions
                     }
             }
         }
-
         public static bool IsAjaxRequest(this HttpRequest request)
         {
             return request.Headers["X-Requested-With"] == "XMLHttpRequest";

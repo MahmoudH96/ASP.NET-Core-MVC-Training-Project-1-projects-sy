@@ -1,14 +1,18 @@
 ﻿let ingredientNameInput;
 let ingredientDescriptionInput;
+let editIngredientUrl;
 
 $(document).ready(() => {
     initializeView();
     bindEvents();
+
 });
 
 function initializeView() {
     ingredientNameInput = $("#ingredientName");
     ingredientDescriptionInput = $("#ingredientDescription");
+    editIngredientUrl = $("#addIngredientBtn").attr("href");
+    $("#ingredientTable").DataTable();
 }
 
 function bindEvents() {
@@ -87,9 +91,7 @@ function getIngredientTr(ingredientData) {
                 <td>0</td>
                 <td>${ingredientData.description}</td>
                 <td>
-                    <a asp-controller="Ingredient"
-                        asp-action="IngredientForm"
-                        asp-route-id="@ingredient.Id"
+                    <a  href="${editIngredientUrl}/${ingredientData.id}"
                         class="btn btn-secondary btn-sm">
                         <i class="fas fa-edit"></i>
                     </a>

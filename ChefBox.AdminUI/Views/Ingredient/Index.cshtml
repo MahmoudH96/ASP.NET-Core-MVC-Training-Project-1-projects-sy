@@ -1,6 +1,8 @@
 ﻿@using ChefBox.AdminUI.ViewModels.Ingredient
 @model IndexViewModel
-
+@section Styles{
+    <link href="~/lib/Datatable/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
 <div class="row">
     <div class="col-md-12">
         <div class="card-group">
@@ -40,7 +42,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <a class="btn btn-primary float-right" asp-controller="Ingredient" asp-action="IngredientForm"><i class="fas fa-plus"></i> New ingredient</a>
+                                    <a id="addIngredientBtn" class="btn btn-primary float-right" asp-controller="Ingredient" asp-action="IngredientForm"><i class="fas fa-plus"></i> New ingredient</a>
                                     <h4 class="card-title">Ingredients</h4>
                                     <h6 class="card-subtitle">Show all ingredients for all recipies</h6>
                                     <div class="table-responsive">
@@ -89,5 +91,7 @@
 </div>
 
 @section Scripts{
+    <script src="~/lib/Datatable/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/Datatable/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/js/Views/Ingredient/Index.js"></script>
 }

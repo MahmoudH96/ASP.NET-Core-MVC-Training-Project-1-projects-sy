@@ -95,7 +95,7 @@ namespace ChefBox.Cooking.Data.Repositories
                         .Where(riDto => riDto.IsChecked)
                         .Select(riDto => new Model.Cooking.RecipeIngredient()
                         {
-                            IngredientId = riDto.Id,
+                            IngredientId = riDto.IngredientId,
                             Amount = riDto.Amount,
                             Unit = riDto.Unit
                         }).ToList();
@@ -140,16 +140,16 @@ namespace ChefBox.Cooking.Data.Repositories
         public IEnumerable<RecipeDto> GetRecipes()
         {
             return Context.Recipes
-                    .Where(recipe=>recipe.IsValid)
-                    .OrderBy(recipe=>recipe.Name)
-                    .Select(recipe=>new RecipeDto()
+                    .Where(recipe => recipe.IsValid)
+                    .OrderBy(recipe => recipe.Name)
+                    .Select(recipe => new RecipeDto()
                     {
-                        Id=recipe.Id,
-                        Name=recipe.Name,
-                        RecipeType= recipe.RecipeType,
-                        Category =recipe.Category.Name,
-                        Ingredients=recipe.RecipeIngredients
-                            .Select(ri=>ri.Ingredient.Name)
+                        Id = recipe.Id,
+                        Name = recipe.Name,
+                        RecipeType = recipe.RecipeType,
+                        Category = recipe.Category.Name,
+                        Ingredients = recipe.RecipeIngredients
+                            .Select(ri => ri.Ingredient.Name)
                             .ToList()
                     }).ToList();
         }
@@ -160,25 +160,26 @@ namespace ChefBox.Cooking.Data.Repositories
                 .Where(recipe => recipe.IsValid && recipe.Id == id)
                 .Select(recipe => new ViewRecipeDto()
                 {
-                    Id=recipe.Id,
-                    Name=recipe.Name,
-                    Category=recipe.Category.Name,
-                    RecipeType= recipe.RecipeType,
-                    IsPublished=recipe.IsPublished,
-                    Description=recipe.Descripton,
-                    Ingredients=recipe.RecipeIngredients.Select(ri=>new RecipeIngredientDto()
+                    Id = recipe.Id,
+                    Name = recipe.Name,
+                    Category = recipe.Category.Name,
+                    CategoryId = recipe.CategoryId,
+                    RecipeType = recipe.RecipeType,
+                    IsPublished = recipe.IsPublished,
+                    Description = recipe.Descripton,
+                    Ingredients = recipe.RecipeIngredients.Select(ri => new RecipeIngredientDto()
                     {
-                        Id=ri.Id,
-                        IngredientId=ri.IngredientId,
-                        Amount=ri.Amount,
-                        Name=ri.Ingredient.Name,
-                        Unit=ri.Unit
+                        Id = ri.Id,
+                        IngredientId = ri.IngredientId,
+                        Amount = ri.Amount,
+                        Name = ri.Ingredient.Name,
+                        Unit = ri.Unit
                     }).ToList(),
-                    Photos=recipe.Photo.Select(photo=>new Dto.Photo.PhotoDto()
+                    Photos = recipe.Photo.Select(photo => new Dto.Photo.PhotoDto()
                     {
-                        Id=photo.Id,
-                        Name=photo.Name,
-                        Url=photo.Url
+                        Id = photo.Id,
+                        Name = photo.Name,
+                        Url = photo.Url
                     }).ToList()
                 }).SingleOrDefault();
         }

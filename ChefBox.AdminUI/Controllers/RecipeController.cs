@@ -52,19 +52,37 @@ namespace ChefBox.AdminUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult RecipeForm()
+        public IActionResult RecipeForm(int? id)
         {
-            var vm = new RecipeFormViewModel()
+            return View(GetRecipeFormData(id, null));
+        }
+
+        public RecipeFormViewModel GetRecipeFormData(int? id, RecipeFormViewModel vm)
+        {
+            if (vm == null)
             {
-                Categories = CategoryRepository.GetCategories()
-                .Select(catDto => new SelectListItem()
+                vm = new RecipeFormViewModel()
                 {
-                    Value = catDto.Id.ToString(),
-                    Text = catDto.Name
-                }),
-                RecipeIngredients = RecipeRepository.GetRecipeAllIngredients(0)
-            };
-            return View(vm);
+                    RecipeIngredients = RecipeRepository.GetRecipeAllIngredients(id ?? 0)
+                };
+
+            }
+            if (id.HasValue)
+            {
+                var recipeData = RecipeRepository.GetRecipe(id.Value);
+                vm.CategoryId = recipeData.CategoryId;
+                vm.Description = recipeData.Description;
+                vm.IsPublished = recipeData.IsPublished;
+                vm.Name = recipeData.Name;
+                vm.RecipeType = recipeData.RecipeType;
+            }
+            vm.Categories = CategoryRepository.GetCategories()
+                       .Select(catDto => new SelectListItem()
+                       {
+                           Value = catDto.Id.ToString(),
+                           Text = catDto.Name
+                       });
+            return vm;
         }
 
         [HttpPost]
@@ -109,7 +127,7 @@ namespace ChefBox.AdminUI.Controllers
                 {
                     return RedirectToAction("Index", "Home");
                 }
-                return RedirectToAction("View", "Recipe");
+                return RedirectToAction("View", "Recipe", new { id = result.Id });
             }
             catch (Exception ex)
             {

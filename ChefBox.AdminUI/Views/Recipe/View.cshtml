@@ -20,7 +20,7 @@
                 <a class="btn btn-primary float-right mx-1" asp-controller="Recipe"
                    asp-action="RecipeForm"
                    asp-route-id="@Model.ViewRecipeDto.Id">
-                    <i class="fas fa-edit"></i>
+                    <i class="fas fa-edit" aria-hidden="true"></i>
                 </a>
                 <a class="btn btn-@publishBtnClass float-right mx-1"
                    href="#">
@@ -39,24 +39,25 @@
                         <ul class="list-group">
                             @foreach (var ingredient in Model.ViewRecipeDto.Ingredients)
                             {
-                            <li class="list-group-item">
-                                <i data-toggle="tooltip" data-placement="top" title="@ingredient.Unit.ToString()" 
-                                   class="@ingredient.Unit.ToIconClass() ingredient-list mx-1"></i>
-                                <p class="ingredient-list mx-1">@ingredient.Name</p>
-                                <small class="ingredient-list mx-1">(@ingredient.Amount)</small>
-                            </li>
+                                <li class="list-group-item">
+                                    <i data-toggle="tooltip" data-placement="top" title="@ingredient.Unit.ToString()"
+                                       class="@ingredient.Unit.ToIconClass() ingredient-list mx-1"></i>
+                                    <p class="ingredient-list mx-1">@ingredient.Name</p>
+                                    <small class="ingredient-list mx-1">(@ingredient.Amount)</small>
+                                </li>
                             }
                         </ul>
                     </div>
                 </div>
                 <div class="row text-center">
-                    
-                    <div style="background-color:gray">
+
+                    <div style="background-color:gray" class="col-md-4 offset-md-4">
                         <div id="recipePhotoSlider" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#recipePhotoSlider" data-slide-to="0" class="active"></li>
-                                <li data-target="#recipePhotoSlider" data-slide-to="1"></li>
-                                <li data-target="#recipePhotoSlider" data-slide-to="2"></li>
+                                @for (int index = 0; index < Model.ViewRecipeDto.Photos.Count(); index++)
+                                {
+                                    <li data-target="#slide@(index)" data-slide-to="@index" class="active"></li>
+                                }
                             </ol>
                             <div class="carousel-inner" role="listbox">
                                 @{
@@ -65,7 +66,7 @@
                                 @for (int index = 0; index < Model.ViewRecipeDto.Photos.Count(); index++)
                                 {
                                     currentPhoto = Model.ViewRecipeDto.Photos.ElementAt(index);
-                                    <div class="carousel-item @(index==0?"active":string.Empty)">
+                                    <div id="slide@(index)" class="carousel-item @(index==0?"active":string.Empty)">
                                         <img class="img-fluid" src="@currentPhoto.Url" alt="@currentPhoto.Name">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h3 class="text-white">@currentPhoto.Name</h3>
@@ -83,7 +84,7 @@
                             </a>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
     </div>
