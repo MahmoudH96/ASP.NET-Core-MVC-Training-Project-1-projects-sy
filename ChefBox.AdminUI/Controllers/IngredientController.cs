@@ -33,6 +33,12 @@ namespace ChefBox.AdminUI.Controllers
 
         public IActionResult IngredientForm(int? id)
         {
+
+            return View(GetIngredientData(id));
+        }
+
+        private IngredientFormViewModel GetIngredientData(int? id)
+        {
             IngredientFormViewModel vm;
             if (id.HasValue && id > 0)
             {
@@ -48,12 +54,16 @@ namespace ChefBox.AdminUI.Controllers
             {
                 vm = new IngredientFormViewModel();
             }
-            return View(vm);
+            return vm;
         }
 
         [HttpPost]
         public IActionResult IngredientForm(IngredientFormViewModel ingredientFormViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(ingredientFormViewModel);
+            }
             var data = IngredientRepository.ActionIngredient(new IngredientDto()
             {
                 Id = ingredientFormViewModel.Id,

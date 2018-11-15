@@ -12,12 +12,13 @@ using System.Threading.Tasks;
 
 namespace ChefBox.AdminUI.ViewModels.Recipe
 {
-    public class RecipeFormViewModel: ChefBoxViewModel
+    public class RecipeFormViewModel : ChefBoxViewModel
     {
         #region Form Data
         public int Id { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please enter the recipe name")]
         public string Name { get; set; }
-        [Display(Name ="Category")]
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public RecipeType RecipeType { get; set; }
         public string Description { get; set; }
