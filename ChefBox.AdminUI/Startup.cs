@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ChefBox.Cooking.Data.Repositories;
 using ChefBox.Cooking.IData.Interfaces;
+using ChefBox.SharedKernal.Configs;
 using ChefBox.SqlServer.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,12 +18,13 @@ namespace ChefBox.AdminUI
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,8 +34,8 @@ namespace ChefBox.AdminUI
             services.AddTransient<ISharedRepository, SharedRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddDbContext<ChefBoxDbContext>(option =>
-            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            option.UseSqlServer(Configuration.GetConnectionString("ProjectsPcConnection")));
+            services.Configure<PageSettings>(Configuration.GetSection("pageSettings"));
 
             services.Configure<CookiePolicyOptions>(options =>
             {

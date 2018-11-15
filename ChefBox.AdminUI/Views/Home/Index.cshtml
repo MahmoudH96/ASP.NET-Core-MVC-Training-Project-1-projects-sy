@@ -1,69 +1,78 @@
 ﻿@using ChefBox.AdminUI.ViewModels.Home
+@using ChefBox.SharedKernal.Configs
+@using Microsoft.Extensions.Options
 @model IndexViewModel
+@inject IOptions<PageSettings> pageSettings
 <div class="row">
-    <div class="col-md-12">
-        <div class="card-group">
-            <div class="card mx-2">
-                <div class="d-flex flex-row">
-                    <div class="p-10 bg-success">
-                        <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-info m-b-0">Recipes</h3>
-                        @if (Model.HomePageDto.Recipes.LatestItemId != 0)
-                        {
-                            <a asp-controller="Recipe" asp-action="RecipeForm"
-                               asp-route-id="@Model.HomePageDto.Recipes.LatestItemId"
-                               class="text-muted">@Model.HomePageDto.Recipes.LatestItemName</a>
-                        }
-                    </div>
-                    <div class="align-self-center m-r-20 ml-auto">
-                        <h2 class="text-info m-b-0">@Model.HomePageDto.Recipes.TotalCount</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="card mx-2">
-                <div class="d-flex flex-row">
-                    <div class="p-10 bg-info">
-                        <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-info m-b-0">Ingredients</h3>
-                        @if (Model.HomePageDto.Ingredients.LatestItemId > 0)
-                        {
-                            <a asp-controller="Ingredient" asp-action="IngredientForm"
-                               asp-route-id="@Model.HomePageDto.Ingredients.LatestItemId"
-                               class="text-muted">@Model.HomePageDto.Ingredients.LatestItemName</a>
-                        }
-                    </div>
-                    <div class="align-self-center m-r-20 ml-auto">
-                        <h2 class="text-info m-b-0">@Model.HomePageDto.Ingredients.TotalCount</h2>
+    <h3>@pageSettings.Value.WelcomeMessage</h3>
+</div>
+@if (pageSettings.Value.DisplayStatistics)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card-group">
+                <div class="card mx-2">
+                    <div class="d-flex flex-row">
+                        <div class="p-10 bg-success">
+                            <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
+                        </div>
+                        <div class="p-10">
+                            <h3 class="text-info m-b-0">Recipes</h3>
+                            @if (Model.HomePageDto.Recipes.LatestItemId != 0)
+                            {
+                                <a asp-controller="Recipe" asp-action="RecipeForm"
+                                   asp-route-id="@Model.HomePageDto.Recipes.LatestItemId"
+                                   class="text-muted">@Model.HomePageDto.Recipes.LatestItemName</a>
+                            }
+                        </div>
+                        <div class="align-self-center m-r-20 ml-auto">
+                            <h2 class="text-info m-b-0">@Model.HomePageDto.Recipes.TotalCount</h2>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card mx-2">
-                <div class="d-flex flex-row">
-                    <div class="p-10 bg-primary">
-                        <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-info m-b-0">Categories</h3>
-                        @if (Model.HomePageDto.Categories.LatestItemId != 0)
-                        {
-                            <a asp-controller="Category" asp-action="CategoryForm"
-                               asp-route-id="@Model.HomePageDto.Categories.LatestItemId"
-                               class="text-muted">@Model.HomePageDto.Categories.LatestItemName</a>
-                        }
-                    </div>
-                    <div class="align-self-center m-r-20 ml-auto">
-                        <h2 class="text-info m-b-0">@Model.HomePageDto.Categories.TotalCount</h2>
+                <div class="card mx-2">
+                    <div class="d-flex flex-row">
+                        <div class="p-10 bg-info">
+                            <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
+                        </div>
+                        <div class="p-10">
+                            <h3 class="text-info m-b-0">Ingredients</h3>
+                            @if (Model.HomePageDto.Ingredients.LatestItemId > 0)
+                            {
+                                <a asp-controller="Ingredient" asp-action="IngredientForm"
+                                   asp-route-id="@Model.HomePageDto.Ingredients.LatestItemId"
+                                   class="text-muted">@Model.HomePageDto.Ingredients.LatestItemName</a>
+                            }
+                        </div>
+                        <div class="align-self-center m-r-20 ml-auto">
+                            <h2 class="text-info m-b-0">@Model.HomePageDto.Ingredients.TotalCount</h2>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="card mx-2">
+                    <div class="d-flex flex-row">
+                        <div class="p-10 bg-primary">
+                            <h3 class="text-white box m-b-0"><i class="fas fa-sticky-note"></i></h3>
+                        </div>
+                        <div class="p-10">
+                            <h3 class="text-info m-b-0">Categories</h3>
+                            @if (Model.HomePageDto.Categories.LatestItemId != 0)
+                            {
+                                <a asp-controller="Category" asp-action="CategoryForm"
+                                   asp-route-id="@Model.HomePageDto.Categories.LatestItemId"
+                                   class="text-muted">@Model.HomePageDto.Categories.LatestItemName</a>
+                            }
+                        </div>
+                        <div class="align-self-center m-r-20 ml-auto">
+                            <h2 class="text-info m-b-0">@Model.HomePageDto.Categories.TotalCount</h2>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
+}
 <div class="row">
     <div class="card col-md-9 mx-4">
         <div class="card-body">

@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LINQToEntityFramework", "LI
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DIP", "DIP", "{A2B8B5D5-C639-427E-9978-25C22EC8EF29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{16A31C28-12B9-4D7E-8CF4-22A10BAAA193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{16A31C28-12B9-4D7E-8CF4-22A10BAAA193}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChefBox", "ChefBox", "{5B18A040-D90F-42E4-BE1A-852740B87924}"
 EndProject
@@ -39,19 +39,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{985185D5-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{950EF030-F1E6-4FB7-9EDA-CFBBED60246F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Model", "ChefBox.Model\ChefBox.Model.csproj", "{391BB00B-3E0A-4609-B7D1-DFC0C9B45003}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Model", "ChefBox.Model\ChefBox.Model.csproj", "{391BB00B-3E0A-4609-B7D1-DFC0C9B45003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.SqlServer", "ChefBox.SqlServer\ChefBox.SqlServer.csproj", "{1A069A26-0E5D-4BCB-89AC-584496131350}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.SqlServer", "ChefBox.SqlServer\ChefBox.SqlServer.csproj", "{1A069A26-0E5D-4BCB-89AC-584496131350}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cooking", "Cooking", "{9249BC24-E4CA-4856-95CF-BC31CBB12BA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Cooking.IData", "ChefBox.Cooking.IData\ChefBox.Cooking.IData.csproj", "{C5E7E517-750D-4C2B-93CB-846473BE1FBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Cooking.IData", "ChefBox.Cooking.IData\ChefBox.Cooking.IData.csproj", "{C5E7E517-750D-4C2B-93CB-846473BE1FBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Cooking.Data", "ChefBox.Cooking.Data\ChefBox.Cooking.Data.csproj", "{2419A9D8-85C6-4D8A-88B1-71632D733738}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Cooking.Data", "ChefBox.Cooking.Data\ChefBox.Cooking.Data.csproj", "{2419A9D8-85C6-4D8A-88B1-71632D733738}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Cooking.Dto", "ChefBox.Cooking.Dto\ChefBox.Cooking.Dto.csproj", "{848D96D2-E320-498D-8C54-7EF04DDDDF25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Cooking.Dto", "ChefBox.Cooking.Dto\ChefBox.Cooking.Dto.csproj", "{848D96D2-E320-498D-8C54-7EF04DDDDF25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.AdminUI", "ChefBox.AdminUI\ChefBox.AdminUI.csproj", "{ED71810E-0663-43FF-A34A-DF9D31444662}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.AdminUI", "ChefBox.AdminUI\ChefBox.AdminUI.csproj", "{ED71810E-0663-43FF-A34A-DF9D31444662}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.SharedKernal", "ChefBox.SharedKernal\ChefBox.SharedKernal.csproj", "{6F8894B2-9FD8-4AF3-A8B4-0D84088450BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,10 @@ Global
 		{ED71810E-0663-43FF-A34A-DF9D31444662}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED71810E-0663-43FF-A34A-DF9D31444662}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED71810E-0663-43FF-A34A-DF9D31444662}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F8894B2-9FD8-4AF3-A8B4-0D84088450BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F8894B2-9FD8-4AF3-A8B4-0D84088450BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F8894B2-9FD8-4AF3-A8B4-0D84088450BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F8894B2-9FD8-4AF3-A8B4-0D84088450BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +143,7 @@ Global
 		{2419A9D8-85C6-4D8A-88B1-71632D733738} = {9249BC24-E4CA-4856-95CF-BC31CBB12BA2}
 		{848D96D2-E320-498D-8C54-7EF04DDDDF25} = {9249BC24-E4CA-4856-95CF-BC31CBB12BA2}
 		{ED71810E-0663-43FF-A34A-DF9D31444662} = {2A20D411-296B-417D-B280-91D5A4EA3A4A}
+		{6F8894B2-9FD8-4AF3-A8B4-0D84088450BF} = {B4295BC6-62B3-4960-B43E-DE3994055C41}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EB6443B-5ED8-4DB4-9D71-404BEE963D75}

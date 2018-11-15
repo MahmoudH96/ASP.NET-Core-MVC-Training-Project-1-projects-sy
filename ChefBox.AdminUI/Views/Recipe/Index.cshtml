@@ -1,7 +1,59 @@
 ﻿@using ChefBox.AdminUI.ViewModels.Recipe
 @using ChefBox.AdminUI.Extensions
 @using ChefBox.AdminUI.Controllers
+@using X.PagedList.Mvc.Common
+@using X.PagedList.Mvc.Core
+@using ChefBox.Model.Cooking.Enums
 @model IndexViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Filters</h4>
+                <form asp-controller="Recipe" asp-action="Index" method="get">
+                    <div class="row">
+                        <div class="col-md-12 form-group">
+                            <input class="form-control" placeholder="Recipe name ..." 
+                                   name="query" id="query"
+                                   value="@Model.Query"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <select class="form-control" name="categoryId" id="categoryId">
+                                <option value="null">Select a category ...</option>
+                                @{
+                                    foreach (var cat in Model.Categories)
+                                    {
+                                        if (Model.CategoryId.HasValue && cat.Value == Model.CategoryId.ToString())
+                                        {
+                                            @: <option selected value="@cat.Value">@cat.Text</option>
+                                        }
+                                        else
+                                        {
+                                            @:<option value="@cat.Value">@cat.Text</option>
+                                        }
+                                    }
+                                }
+                                </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <select class="form-control" name="recipeType" id="categoryId">
+                                <option value="null">Select a recipe type ...</option>
+                                <option value="@RecipeType.Entrees">Entrees</option>
+                                <option value="@RecipeType.MainDish">Main dish</option>
+                                <option value="@RecipeType.Sweet">Sweet</option>
+                                <option value="@RecipeType.Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-default float-right">Search</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
 <div class="row">
     <div class="col-12">
         <div class="card">
@@ -21,7 +73,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var recipe in Model.Recipes)
+                        @foreach (var recipe in Model.SinglePageData)
                         {
                             <tr>
                                 <td>@recipe.Name</td>
@@ -56,6 +108,18 @@
                         }
                     </tbody>
                 </table>
+                <div>
+                    @Html.PagedListPager(Model.PageListData, page => Url.Action("Index","Recipe", new {
+                               pageNumber = page,
+                               query =Model.Query,
+                               categoryId =Model.CategoryId,
+                               recipeType=Model.RecipeType
+                    }),
+                    new PagedListRenderOptions {
+                        LiElementClasses = new string[] { "page-item" },
+                        PageClasses = new string[] { "page-link" }
+                    })
+                </div>
             </div>
         </div>
     </div>

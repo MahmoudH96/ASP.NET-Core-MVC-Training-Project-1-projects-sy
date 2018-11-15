@@ -137,21 +137,46 @@ namespace ChefBox.Cooking.Data.Repositories
             }
         }
 
-        public IEnumerable<RecipeDto> GetRecipes()
+        public RecipeisResult GetRecipes(FilterCriteria filterCriteria)
         {
-            return Context.Recipes
-                    .Where(recipe => recipe.IsValid)
-                    .OrderBy(recipe => recipe.Name)
-                    .Select(recipe => new RecipeDto()
-                    {
-                        Id = recipe.Id,
-                        Name = recipe.Name,
-                        RecipeType = recipe.RecipeType,
-                        Category = recipe.Category.Name,
-                        Ingredients = recipe.RecipeIngredients
+            RecipeisResult recipeisResult = new RecipeisResult();
+            var recipeQuery = Context.Recipes.Where(rec => 
+            rec.IsValid
+            &&
+                    (
+                        string.IsNullOrEmpty(filterCriteria.Query) 
+                        ||
+                        rec.Name.ToUpper().Contains(filterCriteria.Query.ToUpper())
+                    )
+             &&
+                    (
+                        !filterCriteria.CategoryId.HasValue
+                        ||
+                        rec.CategoryId==filterCriteria.CategoryId.Value
+                    )
+            &&
+                    (
+                        !filterCriteria.RecipeType.HasValue
+                        ||
+                        rec.RecipeType == filterCriteria.RecipeType.Value
+                    )
+             );
+            recipeisResult.TotalResultCount = recipeQuery.Count();
+
+            recipeisResult.PageData= recipeQuery.OrderBy(rec=>rec.Name)
+                .Skip(filterCriteria.SkipAmount)
+                .Take(filterCriteria.PageSize)
+                .Select(recipe => new RecipeDto()
+                {
+                    Id = recipe.Id,
+                    Name = recipe.Name,
+                    RecipeType = recipe.RecipeType,
+                    Category = recipe.Category.Name,
+                    Ingredients = recipe.RecipeIngredients
                             .Select(ri => ri.Ingredient.Name)
                             .ToList()
-                    }).ToList();
+                }).ToList();
+            return recipeisResult;
         }
 
         public ViewRecipeDto GetRecipe(int id)
