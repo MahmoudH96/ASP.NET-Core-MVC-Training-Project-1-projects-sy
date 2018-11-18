@@ -1,7 +1,7 @@
-﻿using ChefBox.Cooking.Data.Base;
-using ChefBox.Cooking.Dto.Ingredient;
+﻿using ChefBox.Cooking.Dto.Ingredient;
 using ChefBox.Cooking.IData.Interfaces;
 using ChefBox.Model.Cooking;
+using ChefBox.SharedBoundedContext.Repositories;
 using ChefBox.SqlServer.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -102,9 +102,9 @@ namespace ChefBox.Cooking.Data.Repositories
                 .Where(ing => ing.IsValid && ing.Id == id)
                 .Select(ing => new IngredientDto()
                 {
-                    Id=ing.Id,
-                    Name=ing.Name,
-                    Description=ing.Description
+                    Id = ing.Id,
+                    Name = ing.Name,
+                    Description = ing.Description
                 }).SingleOrDefault();
 
         }

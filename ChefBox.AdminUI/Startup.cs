@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ChefBox.Cooking.Data.Repositories;
+﻿using ChefBox.Cooking.Data.Repositories;
 using ChefBox.Cooking.IData.Interfaces;
+using ChefBox.Security.Data.Repositories;
+using ChefBox.Security.IData.Interfaces;
 using ChefBox.SharedKernal.Configs;
 using ChefBox.SqlServer.Database;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace ChefBox.AdminUI
 {
@@ -33,8 +32,14 @@ namespace ChefBox.AdminUI
             services.AddTransient<IRecipeRepository, RecipeRepository>();
             services.AddTransient<ISharedRepository, SharedRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddDbContext<ChefBoxDbContext>(option =>
-            option.UseSqlServer(Configuration.GetConnectionString("ProjectsPcConnection")));
+            option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ChefBoxDbContext>();
+
+
             services.Configure<PageSettings>(Configuration.GetSection("pageSettings"));
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -62,6 +67,8 @@ namespace ChefBox.AdminUI
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

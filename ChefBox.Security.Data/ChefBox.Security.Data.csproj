@@ -5,13 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChefBox.Cooking.IData\ChefBox.Cooking.IData.csproj" />
+    <ProjectReference Include="..\ChefBox.Security.IData\ChefBox.Security.IData.csproj" />
     <ProjectReference Include="..\ChefBox.SharedBoundedContext\ChefBox.SharedBoundedContext.csproj" />
-    <ProjectReference Include="..\ChefBox.SqlServer\ChefBox.SqlServer.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Base\" />
   </ItemGroup>
 
 </Project>

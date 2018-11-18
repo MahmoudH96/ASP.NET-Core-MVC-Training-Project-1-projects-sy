@@ -1,6 +1,6 @@
 ﻿using ChefBox.SqlServer.Database;
 
-namespace ChefBox.Cooking.Data.Base
+namespace ChefBox.SharedBoundedContext.Repositories
 {
     public abstract class ChefBoxRepository
     {

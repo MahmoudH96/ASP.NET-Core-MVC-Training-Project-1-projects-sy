@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
@@ -20,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ChefBox.Cooking.Data\ChefBox.Cooking.Data.csproj" />
     <ProjectReference Include="..\ChefBox.Cooking.IData\ChefBox.Cooking.IData.csproj" />
+    <ProjectReference Include="..\ChefBox.Security.Data\ChefBox.Security.Data.csproj" />
+    <ProjectReference Include="..\ChefBox.Security.IData\ChefBox.Security.IData.csproj" />
     <ProjectReference Include="..\ChefBox.SharedKernal\ChefBox.SharedKernal.csproj" />
   </ItemGroup>
 
@@ -27,6 +30,15 @@
     <Folder Include="wwwroot\lib\validation\" />
     <Folder Include="wwwroot\lib\sweetAlert\" />
     <Folder Include="wwwroot\recipeImages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc">
+      <HintPath>Microsoft.AspNetCore.Mvc</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

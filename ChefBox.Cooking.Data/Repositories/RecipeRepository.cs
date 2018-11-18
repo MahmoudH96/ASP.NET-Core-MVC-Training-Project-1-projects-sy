@@ -1,6 +1,6 @@
-﻿using ChefBox.Cooking.Data.Base;
-using ChefBox.Cooking.Dto.Recipe;
+﻿using ChefBox.Cooking.Dto.Recipe;
 using ChefBox.Cooking.IData.Interfaces;
+using ChefBox.SharedBoundedContext.Repositories;
 using ChefBox.SqlServer.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -140,11 +140,11 @@ namespace ChefBox.Cooking.Data.Repositories
         public RecipeisResult GetRecipes(FilterCriteria filterCriteria)
         {
             RecipeisResult recipeisResult = new RecipeisResult();
-            var recipeQuery = Context.Recipes.Where(rec => 
+            var recipeQuery = Context.Recipes.Where(rec =>
             rec.IsValid
             &&
                     (
-                        string.IsNullOrEmpty(filterCriteria.Query) 
+                        string.IsNullOrEmpty(filterCriteria.Query)
                         ||
                         rec.Name.ToUpper().Contains(filterCriteria.Query.ToUpper())
                     )
@@ -152,7 +152,7 @@ namespace ChefBox.Cooking.Data.Repositories
                     (
                         !filterCriteria.CategoryId.HasValue
                         ||
-                        rec.CategoryId==filterCriteria.CategoryId.Value
+                        rec.CategoryId == filterCriteria.CategoryId.Value
                     )
             &&
                     (
@@ -163,7 +163,7 @@ namespace ChefBox.Cooking.Data.Repositories
              );
             recipeisResult.TotalResultCount = recipeQuery.Count();
 
-            recipeisResult.PageData= recipeQuery.OrderBy(rec=>rec.Name)
+            recipeisResult.PageData = recipeQuery.OrderBy(rec => rec.Name)
                 .Skip(filterCriteria.SkipAmount)
                 .Take(filterCriteria.PageSize)
                 .Select(recipe => new RecipeDto()

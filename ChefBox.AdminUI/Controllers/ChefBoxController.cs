@@ -9,13 +9,17 @@ using System.Threading.Tasks;
 
 namespace ChefBox.AdminUI.Controllers
 {
-    public abstract class ChefBoxController:Controller
+    public abstract class ChefBoxController : Controller
     {
         public ISharedRepository SharedRepository { get; }
 
         protected ChefBoxController(ISharedRepository sharedRepository)
         {
             SharedRepository = sharedRepository;
+        }
+        protected ChefBoxController()
+        {
+
         }
 
         public override ViewResult View(object model)
@@ -31,7 +35,7 @@ namespace ChefBox.AdminUI.Controllers
 
         private void FillBaseViewModel(object viewModel)
         {
-            if(viewModel is ChefBoxViewModel)
+            if (viewModel is ChefBoxViewModel)
             {
                 var vm = viewModel as ChefBoxViewModel;
                 vm.SharedContentDto = SharedRepository.GetSharedContent();

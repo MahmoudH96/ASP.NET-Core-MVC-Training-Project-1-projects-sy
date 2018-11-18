@@ -1,6 +1,6 @@
-﻿using ChefBox.Cooking.Data.Base;
-using ChefBox.Cooking.Dto.Category;
+﻿using ChefBox.Cooking.Dto.Category;
 using ChefBox.Cooking.IData.Interfaces;
+using ChefBox.SharedBoundedContext.Repositories;
 using ChefBox.SqlServer.Database;
 using System.Collections.Generic;
 using System.Linq;

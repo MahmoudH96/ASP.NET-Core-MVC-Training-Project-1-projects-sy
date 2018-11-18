@@ -79,5 +79,10 @@ namespace ChefBox.AdminUI.Extensions
         {
             return request.Headers["X-Requested-With"] == "XMLHttpRequest";
         }
+
+        public static string ToActionName(this string controllerName)
+        {
+            return controllerName.Replace("Controller", string.Empty);
+        }
     }
 }

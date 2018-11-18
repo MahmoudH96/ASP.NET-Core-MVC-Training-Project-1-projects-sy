@@ -9,7 +9,7 @@
             <!-- Logo -->
             <!-- ============================================================== -->
             <div class="navbar-brand">
-                <a href="index.html" class="logo">
+                <a asp-controller="Home" asp-action="Index" class="logo">
                     <!-- Logo icon -->
                     <b class="logo-icon">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -99,33 +99,19 @@
                                 <img src="~/images/user.png" alt="user" class="rounded-circle" width="60">
                             </div>
                             <div class="m-l-10">
-                                <h4 class="m-b-0">Jonathan Doe</h4>
-                                <p class=" m-b-0">jon@gmail.com</p>
+                                <h4 class="m-b-0">Chef brown</h4>
+                                <p class=" m-b-0">Brown@gmail.com</p>
                             </div>
                         </div>
                         <div class="profile-dis scrollable">
-                            <a class="dropdown-item" href="javascript:void(0)">
-                                <i class="ti-user m-r-5 m-l-5"></i> My Profile
-                            </a>
-                            <a class="dropdown-item" href="javascript:void(0)">
-                                <i class="ti-wallet m-r-5 m-l-5"></i> My Balance
-                            </a>
-                            <a class="dropdown-item" href="javascript:void(0)">
-                                <i class="ti-email m-r-5 m-l-5"></i> Inbox
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)">
-                                <i class="ti-settings m-r-5 m-l-5"></i> Account Setting
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)">
-                                <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout
-                            </a>
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <a class="dropdown-item" onclick="$(this).closest('form').submit();" href="javascript:void(0)">
+                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout
+                                </a>
+                            </form>
                             <div class="dropdown-divider"></div>
                         </div>
-                        <div class="p-l-30 p-10">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
-                        </div>
+
                     </div>
                 </li>
                 <!-- ============================================================== -->

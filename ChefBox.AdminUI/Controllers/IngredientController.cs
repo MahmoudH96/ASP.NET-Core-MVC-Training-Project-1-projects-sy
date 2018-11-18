@@ -2,6 +2,7 @@
 using ChefBox.AdminUI.ViewModels.Ingredient;
 using ChefBox.Cooking.Dto.Ingredient;
 using ChefBox.Cooking.IData.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -9,6 +10,7 @@ using System.Net;
 
 namespace ChefBox.AdminUI.Controllers
 {
+    [Authorize]
     public class IngredientController : ChefBoxController
     {
 

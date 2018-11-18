@@ -8,6 +8,7 @@ using ChefBox.Cooking.Dto.Photo;
 using ChefBox.Cooking.Dto.Recipe;
 using ChefBox.Cooking.IData.Interfaces;
 using ChefBox.Model.Cooking.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,6 +18,7 @@ using X.PagedList;
 
 namespace ChefBox.AdminUI.Controllers
 {
+    [Authorize]
     public class RecipeController : ChefBoxController
     {
         private const string RecipeImagesFolder = "recipeImages";
@@ -35,28 +37,28 @@ namespace ChefBox.AdminUI.Controllers
         }
 
 
-        public IActionResult Index(int?pageNumber,string query,int?categoryId,RecipeType? recipeType)
+        public IActionResult Index(int? pageNumber, string query, int? categoryId, RecipeType? recipeType)
         {
-           // var pageIndex = (pageNumber == null ? 1 : pageNumber)-1;
-           var pageIndex = (pageNumber ?? 1) - 1;
-           var pageSize = 1;
+            // var pageIndex = (pageNumber == null ? 1 : pageNumber)-1;
+            var pageIndex = (pageNumber ?? 1) - 1;
+            var pageSize = 1;
             var pageDataResult = RecipeRepository.GetRecipes(new FilterCriteria()
             {
-                PageSize= pageSize,
-                PageNumber=pageIndex,
-                Query=query,
-                CategoryId=categoryId,
-                RecipeType=recipeType
+                PageSize = pageSize,
+                PageNumber = pageIndex,
+                Query = query,
+                CategoryId = categoryId,
+                RecipeType = recipeType
             });
             var vm = new IndexViewModel()
             {
-                SinglePageData= pageDataResult.PageData,
+                SinglePageData = pageDataResult.PageData,
                 PageListData = new StaticPagedList<RecipeDto>(pageDataResult.PageData, pageIndex + 1, pageSize, pageDataResult.TotalResultCount),
-                Categories= CategoryRepository.GetCategories()
-                .Select(cat=>new SelectListItem(cat.Name,cat.Id.ToString())),
-                Query=query,
-                RecipeType= recipeType,
-                CategoryId=categoryId
+                Categories = CategoryRepository.GetCategories()
+                .Select(cat => new SelectListItem(cat.Name, cat.Id.ToString())),
+                Query = query,
+                RecipeType = recipeType,
+                CategoryId = categoryId
             };
             return View(vm);
         }
