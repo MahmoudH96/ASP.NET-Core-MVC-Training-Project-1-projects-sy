@@ -21,6 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ChefBox.Cooking.Data\ChefBox.Cooking.Data.csproj" />
     <ProjectReference Include="..\ChefBox.Cooking.IData\ChefBox.Cooking.IData.csproj" />
+    <ProjectReference Include="..\ChefBox.Logging.IService\ChefBox.Logging.IService.csproj" />
+    <ProjectReference Include="..\ChefBox.Logging.Service\ChefBox.Logging.Service.csproj" />
     <ProjectReference Include="..\ChefBox.Security.Data\ChefBox.Security.Data.csproj" />
     <ProjectReference Include="..\ChefBox.Security.IData\ChefBox.Security.IData.csproj" />
     <ProjectReference Include="..\ChefBox.SharedKernal\ChefBox.SharedKernal.csproj" />

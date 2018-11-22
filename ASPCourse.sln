@@ -57,13 +57,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.SharedKernal", "Che
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Security", "Security", "{AADC67B1-312E-49D9-957E-790D56797771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Security.IData", "ChefBox.Security.IData\ChefBox.Security.IData.csproj", "{BA404FFB-5F7C-425C-8CC2-E5B36F88B36D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Security.IData", "ChefBox.Security.IData\ChefBox.Security.IData.csproj", "{BA404FFB-5F7C-425C-8CC2-E5B36F88B36D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Security.Data", "ChefBox.Security.Data\ChefBox.Security.Data.csproj", "{5A17E95B-89E7-4292-BE7E-3D7344F0B7F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Security.Data", "ChefBox.Security.Data\ChefBox.Security.Data.csproj", "{5A17E95B-89E7-4292-BE7E-3D7344F0B7F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Security.Dto", "ChefBox.Security.Dto\ChefBox.Security.Dto.csproj", "{0027434D-0612-427D-A26B-34959FB1B283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Security.Dto", "ChefBox.Security.Dto\ChefBox.Security.Dto.csproj", "{0027434D-0612-427D-A26B-34959FB1B283}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.SharedBoundedContext", "ChefBox.SharedBoundedContext\ChefBox.SharedBoundedContext.csproj", "{9A3C082B-13E5-421D-B489-B5E735630E12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.SharedBoundedContext", "ChefBox.SharedBoundedContext\ChefBox.SharedBoundedContext.csproj", "{9A3C082B-13E5-421D-B489-B5E735630E12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{5DE54F0F-5A96-4641-AD3D-903783C6428C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Logging.IService", "ChefBox.Logging.IService\ChefBox.Logging.IService.csproj", "{13826FD2-A426-4A68-8C02-B39C5245BDE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Logging.Dto", "ChefBox.Logging.Dto\ChefBox.Logging.Dto.csproj", "{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Logging.Service", "ChefBox.Logging.Service\ChefBox.Logging.Service.csproj", "{B11F1787-2DE3-4307-9A4E-51D69CF5844F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +151,18 @@ Global
 		{9A3C082B-13E5-421D-B489-B5E735630E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A3C082B-13E5-421D-B489-B5E735630E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A3C082B-13E5-421D-B489-B5E735630E12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13826FD2-A426-4A68-8C02-B39C5245BDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13826FD2-A426-4A68-8C02-B39C5245BDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13826FD2-A426-4A68-8C02-B39C5245BDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13826FD2-A426-4A68-8C02-B39C5245BDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B11F1787-2DE3-4307-9A4E-51D69CF5844F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B11F1787-2DE3-4307-9A4E-51D69CF5844F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B11F1787-2DE3-4307-9A4E-51D69CF5844F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B11F1787-2DE3-4307-9A4E-51D69CF5844F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -175,6 +195,10 @@ Global
 		{5A17E95B-89E7-4292-BE7E-3D7344F0B7F8} = {AADC67B1-312E-49D9-957E-790D56797771}
 		{0027434D-0612-427D-A26B-34959FB1B283} = {AADC67B1-312E-49D9-957E-790D56797771}
 		{9A3C082B-13E5-421D-B489-B5E735630E12} = {B2DABD4C-9E14-47AD-9205-D9717190AF7F}
+		{5DE54F0F-5A96-4641-AD3D-903783C6428C} = {950EF030-F1E6-4FB7-9EDA-CFBBED60246F}
+		{13826FD2-A426-4A68-8C02-B39C5245BDE1} = {5DE54F0F-5A96-4641-AD3D-903783C6428C}
+		{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14} = {5DE54F0F-5A96-4641-AD3D-903783C6428C}
+		{B11F1787-2DE3-4307-9A4E-51D69CF5844F} = {5DE54F0F-5A96-4641-AD3D-903783C6428C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EB6443B-5ED8-4DB4-9D71-404BEE963D75}

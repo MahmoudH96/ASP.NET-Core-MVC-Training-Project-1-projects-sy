@@ -1,4 +1,5 @@
-﻿using ChefBox.Security.Dto.User;
+﻿using ChefBox.Model.Security;
+using ChefBox.Security.Dto.User;
 using ChefBox.Security.IData.Interfaces;
 using ChefBox.SharedBoundedContext.Repositories;
 using ChefBox.SqlServer.Database;
@@ -13,11 +14,11 @@ namespace ChefBox.Security.Data.Repositories
 {
     public class AccountRepository : ChefBoxRepository, IAccountRepository
     {
-        public UserManager<IdentityUser> UserManager { get; }
-        public SignInManager<IdentityUser> SignInManager { get; }
+        public UserManager<CBUser> UserManager { get; }
+        public SignInManager<CBUser> SignInManager { get; }
         public AccountRepository(ChefBoxDbContext context
-            , UserManager<IdentityUser> userManager
-            , SignInManager<IdentityUser> signInManager)
+            , UserManager<CBUser> userManager
+            , SignInManager<CBUser> signInManager)
             : base(context)
         {
             UserManager = userManager;
@@ -62,7 +63,7 @@ namespace ChefBox.Security.Data.Repositories
         {
             try
             {
-                var result = await UserManager.CreateAsync(new IdentityUser()
+                var result = await UserManager.CreateAsync(new CBUser()
                 {
                     UserName = "ChefBrown",
                     Email = userInfoDto.Email,

@@ -8,10 +8,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using ChefBox.Logging.IService.Interfaces;
+using ChefBox.Logging.Service.Serilog;
+using ChefBox.Model.Security;
 
 namespace ChefBox.AdminUI
 {
@@ -33,10 +36,13 @@ namespace ChefBox.AdminUI
             services.AddTransient<ISharedRepository, SharedRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IAccountRepository, AccountRepository>();
+
+            services.AddSingleton<ILogService, SerilogService>();
+
             services.AddDbContext<ChefBoxDbContext>(option =>
             option.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<CBUser, CBRole>()
                 .AddEntityFrameworkStores<ChefBoxDbContext>();
 
 
@@ -54,8 +60,12 @@ namespace ChefBox.AdminUI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env
+            , ILoggerFactory loggerFactory
+            , IApplicationLifetime appLifetime
+            , ILogService logService)
         {
+            logService.ConfigureCloudLog(appLifetime, loggerFactory);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
