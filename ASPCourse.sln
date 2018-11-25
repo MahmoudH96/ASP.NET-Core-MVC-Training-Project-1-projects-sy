@@ -67,11 +67,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.SharedBoundedContex
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logging", "Logging", "{5DE54F0F-5A96-4641-AD3D-903783C6428C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Logging.IService", "ChefBox.Logging.IService\ChefBox.Logging.IService.csproj", "{13826FD2-A426-4A68-8C02-B39C5245BDE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Logging.IService", "ChefBox.Logging.IService\ChefBox.Logging.IService.csproj", "{13826FD2-A426-4A68-8C02-B39C5245BDE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Logging.Dto", "ChefBox.Logging.Dto\ChefBox.Logging.Dto.csproj", "{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Logging.Dto", "ChefBox.Logging.Dto\ChefBox.Logging.Dto.csproj", "{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.Logging.Service", "ChefBox.Logging.Service\ChefBox.Logging.Service.csproj", "{B11F1787-2DE3-4307-9A4E-51D69CF5844F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChefBox.Logging.Service", "ChefBox.Logging.Service\ChefBox.Logging.Service.csproj", "{B11F1787-2DE3-4307-9A4E-51D69CF5844F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChefBox.UnitTest", "ChefBox.UnitTest\ChefBox.UnitTest.csproj", "{4B2F2686-E61D-4905-BB16-22E69AF50EEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,6 +165,10 @@ Global
 		{B11F1787-2DE3-4307-9A4E-51D69CF5844F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B11F1787-2DE3-4307-9A4E-51D69CF5844F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B11F1787-2DE3-4307-9A4E-51D69CF5844F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B2F2686-E61D-4905-BB16-22E69AF50EEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2F2686-E61D-4905-BB16-22E69AF50EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2F2686-E61D-4905-BB16-22E69AF50EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2F2686-E61D-4905-BB16-22E69AF50EEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,6 +205,7 @@ Global
 		{13826FD2-A426-4A68-8C02-B39C5245BDE1} = {5DE54F0F-5A96-4641-AD3D-903783C6428C}
 		{F5F8A88D-75AA-4AE3-9A23-B72CC6182B14} = {5DE54F0F-5A96-4641-AD3D-903783C6428C}
 		{B11F1787-2DE3-4307-9A4E-51D69CF5844F} = {5DE54F0F-5A96-4641-AD3D-903783C6428C}
+		{4B2F2686-E61D-4905-BB16-22E69AF50EEE} = {2A20D411-296B-417D-B280-91D5A4EA3A4A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EB6443B-5ED8-4DB4-9D71-404BEE963D75}
