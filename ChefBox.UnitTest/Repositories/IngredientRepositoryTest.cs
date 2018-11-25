@@ -43,6 +43,17 @@ namespace ChefBox.UnitTest.Repositories
             Assert.Single(ingredientRepo.GetIngredients(query));
         }
 
+        [Fact(DisplayName = "Get ingredient")]
+        public void GetIngredient()
+        {
+            var context = GetDbContext();
+            SeedIngredients(context);
+            var ingredientRepo = new IngredientRepository(context);
+            var ingredient = ingredientRepo.GetIngredient(FirstIngredientId);
+            Assert.Equal(FirstIngredientId,ingredient.Id);
+            Assert.Equal(FirstIngredientName,ingredient.Name);
+        }
+
         [Fact(DisplayName = "Add new ingredient")]
         public void AddIngredient()
         {
@@ -78,5 +89,6 @@ namespace ChefBox.UnitTest.Repositories
             ingredientRepo.RemoveIngredient(FirstIngredientId);
             Assert.Empty(ingredientRepo.GetIngredients(null));
         }
+
     }
 }
